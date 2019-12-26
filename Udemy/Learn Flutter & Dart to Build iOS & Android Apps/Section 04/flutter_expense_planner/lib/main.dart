@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import './widgets/user_transaction.dart';
+import './widgets/transaction_list.dart';
+import './widgets/new_transaction.dart';
+import './models/transaction.dart';
 
 void main() => runApp(
       MaterialApp(
@@ -8,9 +10,46 @@ void main() => runApp(
       ),
     );
 
-class MyHomePage extends StatelessWidget {
-  void startAddNewTransaction(BuildContext context) {
-    showModalBottomSheet(context: context, builder: (ctx) {});
+class MyHomePage extends StatefulWidget {
+  @override
+  State createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final List<Transaction> _userTransactions = [
+    Transaction(
+      id: 't1',
+      title: 'New Shoes',
+      amount: 69.99,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'Weekly Groceries',
+      amount: 16.99,
+      date: DateTime.now(),
+    ),
+  ];
+
+  void _addNewTransaction(String title, double amount) {
+    final newTransaction = Transaction(
+      id: DateTime.now().toString(),
+      title: title,
+      amount: amount,
+      date: DateTime.now(),
+    );
+
+    setState(() {
+      _userTransactions.add(newTransaction);
+    });
+  }
+
+  void _startAddNewTransaction(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (_) {
+          return NewTransaction(addTransactionHandler: _addNewTransaction);
+        });
   }
 
   @override
@@ -21,7 +60,7 @@ class MyHomePage extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
-            onPressed: () {},
+            onPressed: () => _startAddNewTransaction(context),
           ),
         ],
       ),
@@ -41,7 +80,7 @@ class MyHomePage extends StatelessWidget {
                 elevation: 5,
               ),
             ),
-            UserTransactions(),
+            TransactionList(currentTransactionList: _userTransactions),
           ],
         ),
       ),
