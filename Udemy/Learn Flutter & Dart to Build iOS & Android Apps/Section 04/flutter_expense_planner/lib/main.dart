@@ -7,6 +7,10 @@ void main() => runApp(
       MaterialApp(
         title: 'Practice with Udemy',
         home: MyHomePage(),
+        theme: ThemeData(
+          primarySwatch: Colors.pink,
+          accentColor: Colors.amber,
+        ),
       ),
     );
 
