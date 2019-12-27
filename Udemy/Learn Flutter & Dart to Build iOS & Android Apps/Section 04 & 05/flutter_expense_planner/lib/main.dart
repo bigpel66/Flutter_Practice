@@ -49,7 +49,56 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _userTransactions = [];
+  final List<Transaction> _userTransactions = [
+    Transaction(
+      id: DateTime.now().toString(),
+      title: DateTime.now().toString(),
+      amount: 10.0,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: DateTime.now().toString(),
+      title: DateTime.now().toString(),
+      amount: 10.0,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: DateTime.now().toString(),
+      title: DateTime.now().toString(),
+      amount: 10.0,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: DateTime.now().toString(),
+      title: DateTime.now().toString(),
+      amount: 10.0,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: DateTime.now().toString(),
+      title: DateTime.now().toString(),
+      amount: 10.0,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: DateTime.now().toString(),
+      title: DateTime.now().toString(),
+      amount: 10.0,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: DateTime.now().toString(),
+      title: DateTime.now().toString(),
+      amount: 10.0,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: DateTime.now().toString(),
+      title: DateTime.now().toString(),
+      amount: 10.0,
+      date: DateTime.now(),
+    ),
+  ];
 
   bool _showChart = false;
 
