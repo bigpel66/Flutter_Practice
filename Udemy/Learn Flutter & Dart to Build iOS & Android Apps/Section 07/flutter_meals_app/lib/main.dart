@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_meals_app/categories_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -58,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: appBar,
       body: Center(
-        child: Text('Navigation Time'),
+        child: CategoriesScreen(),
       ),
     );
   }
