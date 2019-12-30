@@ -55,52 +55,40 @@ class MyHomePage extends StatefulWidget {
   State createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   final List<Transaction> _userTransactions = [
     Transaction(
-      id: DateTime.now().toString(),
+      id: '1',
       title: DateTime.now().toString(),
       amount: 10.0,
       date: DateTime.now(),
     ),
     Transaction(
-      id: DateTime.now().toString(),
+      id: '2',
       title: DateTime.now().toString(),
       amount: 10.0,
       date: DateTime.now(),
     ),
     Transaction(
-      id: DateTime.now().toString(),
+      id: '3',
       title: DateTime.now().toString(),
       amount: 10.0,
       date: DateTime.now(),
     ),
     Transaction(
-      id: DateTime.now().toString(),
+      id: '4',
       title: DateTime.now().toString(),
       amount: 10.0,
       date: DateTime.now(),
     ),
     Transaction(
-      id: DateTime.now().toString(),
+      id: '5',
       title: DateTime.now().toString(),
       amount: 10.0,
       date: DateTime.now(),
     ),
     Transaction(
-      id: DateTime.now().toString(),
-      title: DateTime.now().toString(),
-      amount: 10.0,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: DateTime.now().toString(),
-      title: DateTime.now().toString(),
-      amount: 10.0,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: DateTime.now().toString(),
+      id: '6',
       title: DateTime.now().toString(),
       amount: 10.0,
       date: DateTime.now(),
@@ -108,6 +96,23 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
 
   bool _showChart = false;
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print(state);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   List<Transaction> get _recentTransactions {
     return _userTransactions.where((transaction) {
