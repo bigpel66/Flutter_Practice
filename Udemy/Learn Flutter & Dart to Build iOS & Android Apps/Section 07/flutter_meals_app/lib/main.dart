@@ -11,6 +11,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Practice with Udemy',
       home: MyHomePage(),
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      // routes: {
+      //   '': ,
+      //   '': ,
+      // },
     );
   }
 
@@ -24,6 +31,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // return Platform.isIOS ? _buildCupertinoApp() : _buildMaterialApp();
+
     return _buildMaterialApp();
   }
 }
@@ -36,27 +44,31 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   Widget _buildAppBar() {
     return AppBar(
-      title: Text('MEALS App'),
+      title: Text('DeliMeals'),
     );
   }
 
   Widget _buildCupertinoNavigationBar() {
     return CupertinoNavigationBar(
-      middle: Text('MEALS APP'),
+      middle: Text('DeliMeals'),
     );
   }
 
   Widget _buildScaffold(PreferredSizeWidget appBar) {
     return Scaffold(
       appBar: appBar,
-      body: Container(),
+      body: Center(
+        child: Text('Navigation Time'),
+      ),
     );
   }
 
   Widget _buildCupertinoPageScaffold(PreferredSizeWidget appBar) {
     return CupertinoPageScaffold(
       navigationBar: appBar,
-      child: Container(),
+      child: Center(
+        child: Text('Navigation Time'),
+      ),
     );
   }
 
@@ -67,8 +79,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final mediaQuery = MediaQuery.of(context);
 
-    return Platform.isIOS
-        ? _buildCupertinoPageScaffold(appBar)
-        : _buildScaffold(appBar);
+    // return Platform.isIOS
+    //     ? _buildCupertinoPageScaffold(appBar)
+    //     : _buildScaffold(appBar);
+
+    return _buildScaffold(appBar);
   }
 }
