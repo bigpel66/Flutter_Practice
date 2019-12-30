@@ -8,50 +8,15 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  Widget _buildMaterialApp() {
-    return MaterialApp(
-      title: 'Practice with Udemy',
-      home: MyHomePage(),
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      // routes: {
-      //   '': ,
-      //   '': ,
-      // },
-    );
-  }
-
-  Widget _buildCupertinoApp() {
-    return CupertinoApp(
-      title: 'Practice with Udemy',
-      home: MyHomePage(),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // return Platform.isIOS ? _buildCupertinoApp() : _buildMaterialApp();
-
-    return _buildMaterialApp();
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
   Widget _buildAppBar() {
     return AppBar(
-      title: Text('DeliMeals'),
+      title: const Text('DeliMeals'),
     );
   }
 
   Widget _buildCupertinoNavigationBar() {
     return CupertinoNavigationBar(
-      middle: Text('DeliMeals'),
+      middle: const Text('DeliMeals'),
     );
   }
 
@@ -73,17 +38,48 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  Widget _buildMaterialApp(PreferredSizeWidget appBar) {
+    return MaterialApp(
+      title: 'Practice with Udemy',
+      home: _buildScaffold(appBar),
+      theme: ThemeData(
+        primarySwatch: Colors.pink,
+        accentColor: Colors.amber,
+        canvasColor: Color.fromRGBO(255, 254, 229, 1),
+        fontFamily: 'Raleway',
+        textTheme: ThemeData.light().textTheme.copyWith(
+              body1: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
+              body2: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
+              title: TextStyle(
+                fontSize: 18,
+                fontFamily: 'RobotoCondensed',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+      ),
+      // routes: {
+      //   '': ,
+      //   '': ,
+      // },
+    );
+  }
+
+  Widget _buildCupertinoApp(PreferredSizeWidget appBar) {
+    return CupertinoApp(
+      title: 'Practice with Udemy',
+      home: _buildCupertinoPageScaffold(appBar),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final PreferredSizeWidget appBar =
-        Platform.isIOS ? _buildCupertinoNavigationBar() : _buildAppBar();
+    // final PreferredSizeWidget appBar =
+    //     Platform.isIOS ? _buildCupertinoNavigationBar() : _buildAppBar();
 
-    final mediaQuery = MediaQuery.of(context);
+    final PreferredSizeWidget appBar = _buildAppBar();
 
-    // return Platform.isIOS
-    //     ? _buildCupertinoPageScaffold(appBar)
-    //     : _buildScaffold(appBar);
+    // return Platform.isIOS ? _buildCupertinoApp(appBar) : _buildMaterialApp(appBar);
 
-    return _buildScaffold(appBar);
+    return _buildMaterialApp(appBar);
   }
 }
