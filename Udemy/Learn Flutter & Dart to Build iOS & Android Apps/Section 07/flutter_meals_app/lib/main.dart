@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
 
   List<Meal> _availableMeals = DUMMY_MEALS;
 
-  void _setFilters(Map<String, bool> filterData) {
+  void _setFiltersHandler(Map<String, bool> filterData) {
     setState(() {
       _filters = filterData;
       _availableMeals = DUMMY_MEALS.where((meal) {
@@ -87,7 +87,7 @@ class _MyAppState extends State<MyApp> {
             CategoryMealsScreen(availableMeals: _availableMeals),
         MealDetailScreen.routeName: (context) => MealDetailScreen(),
         FiltersScreen.routeName: (context) =>
-            FiltersScreen(setFilters: _setFilters),
+            FiltersScreen(currentFilters: _filters, setFiltersHandler: _setFiltersHandler),
       },
       onGenerateRoute: (settings) {
         return MaterialPageRoute(builder: (contetxt) => CategoriesScreen());
