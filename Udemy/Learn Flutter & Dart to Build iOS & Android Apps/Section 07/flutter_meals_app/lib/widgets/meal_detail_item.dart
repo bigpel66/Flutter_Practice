@@ -33,7 +33,7 @@ class MealDetailItem extends StatelessWidget {
       margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.all(10),
       height: 150,
-      width: 300,
+      width: 400,
       child: child,
     );
   }
