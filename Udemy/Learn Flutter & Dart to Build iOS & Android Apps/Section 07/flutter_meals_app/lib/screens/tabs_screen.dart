@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './categories_screen.dart';
 import './favorites_screen.dart';
+import '../widgets/main_drawer.dart';
 
 class TabsScreen extends StatefulWidget {
   @override
@@ -12,10 +13,12 @@ class _TabsScreenState extends State<TabsScreen> {
     {
       'page': CategoriesScreen(),
       'title': 'Categories',
+      'drawer': MainDrawer(),
     },
     {
       'page': FavoritesScreen(),
       'title': 'Your Favorites',
+      'drawer': null,
     },
   ];
 
@@ -54,6 +57,7 @@ class _TabsScreenState extends State<TabsScreen> {
         currentIndex: _selectedPageIndex,
         type: BottomNavigationBarType.shifting,
       ),
+      drawer: _pages[_selectedPageIndex]['drawer'],
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter_meals_app/screens/tabs_screen.dart';
 import './screens/categories_screen.dart';
 import './screens/category_meals_screen.dart';
 import './screens/meal_detail_sceen.dart';
+import './widgets/main_drawer.dart';
 
 void main() {
   runApp(MyApp());
