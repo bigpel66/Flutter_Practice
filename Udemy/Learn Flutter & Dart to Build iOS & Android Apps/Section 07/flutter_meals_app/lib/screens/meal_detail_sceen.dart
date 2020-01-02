@@ -15,12 +15,18 @@ class MealDetailScreen extends StatelessWidget {
     });
 
     return Scaffold(
-      appBar: AppBar(title: Text(selectedMeal.title)),
-      body: MealDetailItem(
-        imageUrl: selectedMeal.imageUrl,
-        ingredients: selectedMeal.ingredients,
-        steps: selectedMeal.steps,
-      ),
-    );
+        appBar: AppBar(title: Text(selectedMeal.title)),
+        body: MealDetailItem(
+          imageUrl: selectedMeal.imageUrl,
+          ingredients: selectedMeal.ingredients,
+          steps: selectedMeal.steps,
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.delete),
+          onPressed: () {
+            Navigator.of(context).pop(mealId);
+          },
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat);
   }
 }
