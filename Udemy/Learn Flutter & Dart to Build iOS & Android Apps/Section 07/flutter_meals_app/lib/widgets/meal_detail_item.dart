@@ -1,24 +1,14 @@
 import 'package:flutter/material.dart';
 
 class MealDetailItem extends StatelessWidget {
-  // final String id;
-  // final String title;
   final String imageUrl;
   final List<String> ingredients;
   final List<String> steps;
-  // final Complexity complexity;
-  // final Affordability affordability;
-  // final int duration;
 
   MealDetailItem({
-    //   @required this.id,
-    //   @required this.title,
     @required this.imageUrl,
     @required this.ingredients,
     @required this.steps,
-    //   @required this.complexity,
-    //   @required this.affordability,
-    //   @required this.duration,
   });
 
   Widget _buildSectionTitle(BuildContext context, String text) {
