@@ -56,11 +56,6 @@ class MealItem extends StatelessWidget {
       MealDetailScreen.routeName,
       arguments: {
         'id': this.id,
-        'title': this.title,
-        'imageUrl': this.imageUrl,
-        'complexity': this.complexity,
-        'affordability': this.affordability,
-        'duration': this.duration,
       },
     );
   }
