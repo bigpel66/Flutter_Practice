@@ -16,12 +16,6 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-  // Widget _buildCupertinoApp() {
-  //   return CupertinoApp(
-  //     title: 'Practice with Udemy',
-  //     home: CategoriesScreen(),
-  //   );
-  // }
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -90,7 +84,6 @@ class _MyAppState extends State<MyApp> {
   Widget _buildMaterialApp() {
     return MaterialApp(
       title: 'Practice with Udemy',
-      // home: CategoriesScreen(),
       theme: ThemeData(
         primarySwatch: Colors.pink,
         accentColor: Colors.amber,
@@ -129,7 +122,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    // return Platform.isIOS ? _buildCupertinoApp(appBar) : _buildMaterialApp(appBar);
 
     return _buildMaterialApp();
   }
