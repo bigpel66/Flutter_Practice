@@ -5,6 +5,14 @@ import '../dummy_data.dart';
 class MealDetailScreen extends StatelessWidget {
   static const String routeName = '/meal-detail';
 
+  final Function isMealFavoritedHandler;
+  final Function toggleFavoriteHandler;
+
+  MealDetailScreen({
+    @required this.isMealFavoritedHandler,
+    @required this.toggleFavoriteHandler,
+  });
+
   @override
   Widget build(BuildContext context) {
     final routeArgs =
@@ -22,10 +30,10 @@ class MealDetailScreen extends StatelessWidget {
           steps: selectedMeal.steps,
         ),
         floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.delete),
-          onPressed: () {
-            Navigator.of(context).pop(mealId);
-          },
+          child: Icon(
+            isMealFavoritedHandler(mealId) ? Icons.star : Icons.star_border,
+          ),
+          onPressed: () => toggleFavoriteHandler(mealId),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat);
   }

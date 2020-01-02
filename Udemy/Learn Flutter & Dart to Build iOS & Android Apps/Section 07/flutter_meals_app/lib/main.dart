@@ -37,6 +37,8 @@ class _MyAppState extends State<MyApp> {
 
   List<Meal> _availableMeals = DUMMY_MEALS;
 
+  List<Meal> _favoritedMeals = [];
+
   void _setFiltersHandler(Map<String, bool> filterData) {
     setState(() {
       _filters = filterData;
@@ -61,6 +63,30 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void _toggleFavoriteHandler(String id) {
+    final existingIndex = _favoritedMeals.indexWhere((meal) {
+      return meal.id == id;
+    });
+
+    if (existingIndex >= 0) {
+      setState(() {
+        _favoritedMeals.removeAt(existingIndex);
+      });
+    } else {
+      setState(() {
+        _favoritedMeals.add(DUMMY_MEALS.firstWhere((meal) {
+          return id == meal.id;
+        }));
+      });
+    }
+  }
+
+  bool _isMealFavoritedHandler(String id) {
+    return _favoritedMeals.any((meal) {
+      return meal.id == id;
+    });
+  }
+
   Widget _buildMaterialApp() {
     return MaterialApp(
       title: 'Practice with Udemy',
@@ -82,12 +108,15 @@ class _MyAppState extends State<MyApp> {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => TabsScreen(),
+        '/': (context) => TabsScreen(favoritedMeals: _favoritedMeals),
         CategoryMealsScreen.routeName: (context) =>
             CategoryMealsScreen(availableMeals: _availableMeals),
-        MealDetailScreen.routeName: (context) => MealDetailScreen(),
-        FiltersScreen.routeName: (context) =>
-            FiltersScreen(currentFilters: _filters, setFiltersHandler: _setFiltersHandler),
+        MealDetailScreen.routeName: (context) => MealDetailScreen(
+              isMealFavoritedHandler: _isMealFavoritedHandler,
+              toggleFavoriteHandler: _toggleFavoriteHandler,
+            ),
+        FiltersScreen.routeName: (context) => FiltersScreen(
+            currentFilters: _filters, setFiltersHandler: _setFiltersHandler),
       },
       onGenerateRoute: (settings) {
         return MaterialPageRoute(builder: (contetxt) => CategoriesScreen());
