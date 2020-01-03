@@ -17,12 +17,12 @@ class ProductItem extends StatelessWidget {
   });
 
   void selectProduct(BuildContext context) {
-    Navigator.of(context).pushNamed(ProductDetailScreen.routeName, arguments: {
-      'id': this.id,
-      'title': this.title,
-      'description': this.description,
-      'price': this.price,
-    });
+    Navigator.of(context).pushNamed(
+      ProductDetailScreen.routeName,
+      arguments: {
+        'id': this.id,
+      },
+    );
   }
 
   @override
