@@ -13,11 +13,6 @@ class ProductDetailScreen extends StatelessWidget {
     final loadedProduct =
         Provider.of<Products>(context, listen: false).findById(productId);
 
-    // print(productId);
-    // print(productTitle);
-    // print(productDescription);
-    // print(productPrice);
-
     return Scaffold(
       appBar: AppBar(title: Text(loadedProduct.title)),
       body: Text(''),

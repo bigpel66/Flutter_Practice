@@ -8,12 +8,7 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  State createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
+class MyApp extends StatelessWidget {
   Widget _buildMaterialApp(BuildContext context) {
     return ChangeNotifierProvider(
       builder: (context) {
