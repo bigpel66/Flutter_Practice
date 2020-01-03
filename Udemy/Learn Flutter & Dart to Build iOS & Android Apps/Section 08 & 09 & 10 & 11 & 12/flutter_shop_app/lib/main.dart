@@ -10,11 +10,8 @@ void main() {
 
 class MyApp extends StatelessWidget {
   Widget _buildMaterialApp(BuildContext context) {
-    return ChangeNotifierProvider(
-      builder: (context) {
-        return Products();
-      },
-      create: null,
+    return ChangeNotifierProvider.value(
+      value: Products(),
       child: MaterialApp(
         title: 'Practice with Udemy',
         initialRoute: '/',
