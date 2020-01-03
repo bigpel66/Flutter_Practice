@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop_app/screens/product_detail_screen.dart';
 import './screens/products_overview_screen.dart';
+import './screens/product_detail_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,6 +19,7 @@ class _MyAppState extends State<MyApp> {
       initialRoute: '/',
       routes: {
         '/': (context) => ProductsOverviewScreen(),
+        ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
       },
       onGenerateRoute: (settings) {
         return MaterialPageRoute(
@@ -27,14 +30,15 @@ class _MyAppState extends State<MyApp> {
             builder: (context) => ProductsOverviewScreen());
       },
       theme: ThemeData(
-        primaryColor: Colors.blue,
-        primarySwatch: Colors.blue,
+        primaryColor: Colors.purple,
+        primarySwatch: Colors.purple,
+        accentColor: Colors.deepOrange,
+        fontFamily: 'Lato',
         // textTheme: ThemeData.light().textTheme.copyWith(
         //   body1: ,
         //   body2: ,
         //   title: ,
         // ),
-        // fontFamily: ,
       ),
     );
   }
