@@ -17,10 +17,7 @@ class CartList extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                const Text(
-                  'Total',
-                  style: TextStyle(fontSize: 20),
-                ),
+                const Text('Total', style: TextStyle(fontSize: 20)),
                 SizedBox(width: 30),
                 Chip(
                   label: Text(
