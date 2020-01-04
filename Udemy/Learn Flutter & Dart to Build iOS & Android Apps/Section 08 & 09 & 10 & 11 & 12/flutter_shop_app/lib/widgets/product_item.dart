@@ -38,6 +38,7 @@ class ProductItem extends StatelessWidget {
               product.id,
               product.title,
               product.price,
+              product.imageUrl,
             ),
             color: Theme.of(context).accentColor,
           ),

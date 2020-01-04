@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../widgets/products_grid.dart';
 import '../widgets/badge.dart';
 import '../providers/cart.dart';
+import '../screens/cart_screen.dart';
 
 enum FilterOptions {
   Favorite,
@@ -16,6 +17,10 @@ class ProductsOverviewScreen extends StatefulWidget {
 
 class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   bool _showOnlyFavorites = false;
+
+  void showCartList() {
+    Navigator.of(context).pushNamed(CartScreen.routeName);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +68,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
               icon: Icon(
                 Icons.shopping_cart,
               ),
-              onPressed: () {},
+              onPressed: () => showCartList(),
             ),
           ),
         ],

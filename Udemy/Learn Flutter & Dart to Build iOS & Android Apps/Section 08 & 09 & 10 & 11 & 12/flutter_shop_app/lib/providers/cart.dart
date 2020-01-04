@@ -1,16 +1,18 @@
 import 'package:flutter/foundation.dart';
 
-class CartItem {
+class CartItem with ChangeNotifier {
   final String id;
   final String title;
   final int quantity;
   final double price;
+  final String imageUrl;
 
   CartItem({
     @required this.id,
     @required this.title,
     @required this.quantity,
     @required this.price,
+    this.imageUrl,
   });
 }
 
@@ -25,7 +27,15 @@ class Cart with ChangeNotifier {
     return _items == null ? 0 : _items.length;
   }
 
-  void addItem(String id, String title, double price) {
+  double get totalPrice {
+    double sum = 0.0;
+    _items.forEach((key, item) {
+      sum += item.price * item.quantity;
+    });
+    return sum;
+  }
+
+  void addItem(String id, String title, double price, String imageUrl) {
     if (_items.containsKey(id)) {
       _items.update(id, (existingCartItem) {
         return CartItem(
@@ -33,6 +43,7 @@ class Cart with ChangeNotifier {
           title: existingCartItem.title,
           quantity: existingCartItem.quantity + 1,
           price: existingCartItem.price,
+          imageUrl: existingCartItem.imageUrl,
         );
       });
     } else {
@@ -42,6 +53,7 @@ class Cart with ChangeNotifier {
           title: title,
           quantity: 1,
           price: price,
+          imageUrl: imageUrl,
         );
       });
     }
