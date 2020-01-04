@@ -18,7 +18,7 @@ class ProductsOverviewScreen extends StatefulWidget {
 class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   bool _showOnlyFavorites = false;
 
-  void showCartList() {
+  void showCartList(BuildContext context) {
     Navigator.of(context).pushNamed(CartScreen.routeName);
   }
 
@@ -68,7 +68,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
               icon: Icon(
                 Icons.shopping_cart,
               ),
-              onPressed: () => showCartList(),
+              onPressed: () => showCartList(context),
             ),
           ),
         ],

@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './cart_list_item.dart';
+import '../screens/orders_screen.dart';
 import '../providers/cart.dart';
 import '../providers/orders.dart';
 
 class CartList extends StatelessWidget {
+  void showOrderList(BuildContext context) {
+    Navigator.of(context).pushNamed(
+      OrdersScreen.routeName,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
@@ -36,6 +43,7 @@ class CartList extends StatelessWidget {
                     Provider.of<Orders>(context, listen: false)
                         .addOrder(cartItem, cart.totalPrice);
                     cart.clearCart();
+                    showOrderList(context);
                   },
                   textColor: Theme.of(context).primaryColor,
                 ),
