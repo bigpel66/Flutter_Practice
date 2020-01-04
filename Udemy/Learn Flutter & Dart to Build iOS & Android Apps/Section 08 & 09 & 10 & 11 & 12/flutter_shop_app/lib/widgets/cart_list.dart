@@ -43,7 +43,7 @@ class CartList extends StatelessWidget {
                     Provider.of<Orders>(context, listen: false)
                         .addOrder(cartItem, cart.totalPrice);
                     cart.clearCart();
-                    showOrderList(context);
+                    if (cartItem.length != 0) showOrderList(context);
                   },
                   textColor: Theme.of(context).primaryColor,
                 ),

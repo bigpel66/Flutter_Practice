@@ -18,6 +18,7 @@ class OrderListItem extends StatelessWidget {
           ListTile(
             leading: Image.network(orderItem.products[0].imageUrl),
             title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
                   '${orderItem.products[0].title} with ${orderItem.products.length - 1} ${orderItem.products.length - 1 == 1 ? 'product' : 'products'}',

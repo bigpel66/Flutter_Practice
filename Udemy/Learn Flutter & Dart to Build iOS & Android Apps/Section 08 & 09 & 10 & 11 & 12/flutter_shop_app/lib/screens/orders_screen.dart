@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop_app/widgets/app_drawer.dart';
 import '../widgets/order_list.dart';
 
 class OrdersScreen extends StatelessWidget {
@@ -8,6 +9,7 @@ class OrdersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Your Order List')),
+      drawer: AppDrawer(),
       body: OrderList(),
     );
   }
