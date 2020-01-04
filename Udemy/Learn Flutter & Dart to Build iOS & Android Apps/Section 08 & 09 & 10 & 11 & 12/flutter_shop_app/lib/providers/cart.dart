@@ -49,7 +49,7 @@ class Cart with ChangeNotifier {
     } else {
       _items.putIfAbsent(id, () {
         return CartItem(
-          id: DateTime.now().toString(),
+          id: id,
           title: title,
           quantity: 1,
           price: price,
@@ -57,6 +57,11 @@ class Cart with ChangeNotifier {
         );
       });
     }
+    notifyListeners();
+  }
+
+  void removeItem(String id) {
+    _items.remove(id);
     notifyListeners();
   }
 }
