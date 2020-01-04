@@ -23,7 +23,7 @@ class Orders with ChangeNotifier {
     return [..._orders];
   }
 
-  void _addOrder(List<CartItem> products, double amount) {
+  void addOrder(List<CartItem> products, double amount) {
     _orders.insert(
       0,
       OrderItem(

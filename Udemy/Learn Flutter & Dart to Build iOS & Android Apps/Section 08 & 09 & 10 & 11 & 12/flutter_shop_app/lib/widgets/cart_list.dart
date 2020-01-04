@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './cart_list_item.dart';
 import '../providers/cart.dart';
+import '../providers/orders.dart';
 
 class CartList extends StatelessWidget {
   @override
@@ -31,7 +32,11 @@ class CartList extends StatelessWidget {
                 Spacer(),
                 FlatButton(
                   child: Text('ORDER NOW'),
-                  onPressed: () {},
+                  onPressed: () {
+                    Provider.of<Orders>(context, listen: false)
+                        .addOrder(cartItem, cart.totalPrice);
+                    cart.clearCart();
+                  },
                   textColor: Theme.of(context).primaryColor,
                 ),
               ],
