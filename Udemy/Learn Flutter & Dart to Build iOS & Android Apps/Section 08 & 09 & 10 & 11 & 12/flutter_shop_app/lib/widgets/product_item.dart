@@ -47,7 +47,7 @@ class ProductItem extends StatelessWidget {
                     'Item added to the Cart',
                     textAlign: TextAlign.center,
                   ),
-                  duration: Duration(seconds: 3),
+                  duration: Duration(seconds: 5),
                   action: SnackBarAction(
                       label: 'Undo',
                       onPressed: () {
