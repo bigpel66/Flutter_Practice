@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class EditProduct extends StatefulWidget {
+class ProductFormField extends StatefulWidget {
   @override
-  State createState() => _EditProductState();
+  State createState() => _ProductFormFieldState();
 }
 
-class _EditProductState extends State<EditProduct> {
+class _ProductFormFieldState extends State<ProductFormField> {
   final _priceFocusNode = FocusNode();
   final _descriptionFocusNode = FocusNode();
 
