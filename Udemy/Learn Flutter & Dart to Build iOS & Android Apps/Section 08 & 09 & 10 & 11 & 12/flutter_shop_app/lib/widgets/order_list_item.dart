@@ -24,32 +24,30 @@ class _OrderListItemState extends State<OrderListItem> {
       child: Column(
         children: <Widget>[
           ListTile(
-            leading: Image.network(widget.orderItem.products[0].imageUrl),
-            title: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  '${widget.orderItem.products[0].title} with ${widget.orderItem.products.length - 1} ${widget.orderItem.products.length - 1 == 1 ? 'product' : 'products'}',
-                ),
-                Text('\$${widget.orderItem.amount}')
-              ],
-            ),
-            subtitle: Text(
-              DateFormat('dd MM yyyy hh:mm').format(widget.orderItem.dateTime),
-            ),
-            trailing: widget.orderItem.products.length >= 2
-                ? IconButton(
-                    icon: _isExpanded
-                        ? Icon(Icons.expand_less)
-                        : Icon(Icons.expand_more),
-                    onPressed: () {
-                      setState(() {
-                        _isExpanded = !_isExpanded;
-                      });
-                    },
-                  )
-                : null,
-          ),
+              leading: Image.network(widget.orderItem.products[0].imageUrl),
+              title: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    '${widget.orderItem.products[0].title} ${widget.orderItem.products.length - 1 >= 1 ? 'with' : ''} ${widget.orderItem.products.length - 1 >= 1 ? widget.orderItem.products.length - 1 : ''} ${widget.orderItem.products.length - 1 >= 1 ? 'products' : ''}',
+                  ),
+                  Text('\$${widget.orderItem.amount}')
+                ],
+              ),
+              subtitle: Text(
+                DateFormat('dd MM yyyy hh:mm')
+                    .format(widget.orderItem.dateTime),
+              ),
+              trailing: IconButton(
+                icon: _isExpanded
+                    ? Icon(Icons.expand_less)
+                    : Icon(Icons.expand_more),
+                onPressed: () {
+                  setState(() {
+                    _isExpanded = !_isExpanded;
+                  });
+                },
+              )),
           if (_isExpanded)
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
