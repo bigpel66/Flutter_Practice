@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class EditProduct extends StatefulWidget {
   @override
@@ -6,6 +7,8 @@ class EditProduct extends StatefulWidget {
 }
 
 class _EditProductState extends State<EditProduct> {
+  final _priceFocusNode = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,6 +19,15 @@ class _EditProductState extends State<EditProduct> {
             TextFormField(
               decoration: InputDecoration(labelText: 'Title'),
               textInputAction: TextInputAction.next,
+              onFieldSubmitted: (_) {
+                FocusScope.of(context).requestFocus(_priceFocusNode);
+              },
+            ),
+            TextFormField(
+              decoration: InputDecoration(labelText: 'Price'),
+              textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.number,
+              focusNode: _priceFocusNode,
             ),
           ],
         ),
