@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_shop_app/widgets/app_drawer.dart';
 import '../widgets/user_products_list.dart';
 import '../widgets/app_drawer.dart';
-import '../screens/add_product_screen.dart';
+import '../screens/edit_product_screen.dart';
 
 class UserProductsScreen extends StatelessWidget {
   static const routeName = '/user-products';
 
   void showRegisterProductScreen(BuildContext context) {
-    Navigator.of(context).pushNamed(AddProductScreen.routeName);
+    Navigator.of(context).pushNamed(EditProductScreen.routeName);
   }
 
   @override

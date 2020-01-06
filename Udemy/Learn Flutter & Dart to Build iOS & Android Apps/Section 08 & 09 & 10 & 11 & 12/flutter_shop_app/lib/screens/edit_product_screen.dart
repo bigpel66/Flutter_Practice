@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../providers/product.dart';
+import '../providers/products.dart';
 
 class EditProductScreen extends StatefulWidget {
   static const routeName = '/edit-product';
@@ -52,30 +54,27 @@ class _EditProductScreenState extends State<EditProductScreen> {
     }
   }
 
-  void _saveForm() {
+  void _saveForm(BuildContext context) {
     final isValid = _form.currentState.validate();
-    if (isValid) {
+    if (!isValid) {
       return;
     }
 
     _form.currentState.save();
 
-    print(_editedProduct.title);
-    print(_editedProduct.price);
-    print(_editedProduct.description);
-    print(_editedProduct.imageUrl);
+    Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
+
+    Navigator.of(context).pop();
   }
 
   Widget build(BuildContext context) {
-    final routeArgs = ModalRoute.of(context).settings.arguments;
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Edit Product'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.save),
-            onPressed: () => _saveForm(),
+            onPressed: () => _saveForm(context),
           ),
         ],
       ),
@@ -212,7 +211,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       controller: _imageUrlController,
                       focusNode: _imageUrlFocusNode,
                       onFieldSubmitted: (_) {
-                        _saveForm();
+                        _saveForm(context);
                       },
                       onSaved: (value) {
                         _editedProduct = Product(
