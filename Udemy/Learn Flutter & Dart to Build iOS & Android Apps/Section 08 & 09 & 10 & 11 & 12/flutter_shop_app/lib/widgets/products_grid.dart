@@ -14,6 +14,7 @@ class ProductsGrid extends StatefulWidget {
 
 class _ProductsGridState extends State<ProductsGrid> {
   bool _isInit = true;
+  bool _isLoading = false;
   // @override
   // void initState() {
   // Provider.of<Products>(context, listen: false).fetchAndSetProducts();
@@ -26,7 +27,12 @@ class _ProductsGridState extends State<ProductsGrid> {
   @override
   void didChangeDependencies() {
     if (_isInit) {
-      Provider.of<Products>(context).fetchAndSetProducts();
+      _isLoading = true;
+      Provider.of<Products>(context).fetchAndSetProducts().then((_) {
+        setState(() {
+          _isLoading = false;
+        });
+      });
     }
     _isInit = false;
     super.didChangeDependencies();
@@ -39,21 +45,23 @@ class _ProductsGridState extends State<ProductsGrid> {
         ? productsData.favoritedItems
         : productsData.items;
 
-    return GridView.builder(
-      padding: const EdgeInsets.all(10.0),
-      itemCount: products.length,
-      itemBuilder: (context, index) {
-        return ChangeNotifierProvider.value(
-          value: products[index],
-          child: ProductItem(),
-        );
-      },
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 3 / 2,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-      ),
-    );
+    return _isLoading
+        ? Center(child: CircularProgressIndicator())
+        : GridView.builder(
+            padding: const EdgeInsets.all(10.0),
+            itemCount: products.length,
+            itemBuilder: (context, index) {
+              return ChangeNotifierProvider.value(
+                value: products[index],
+                child: ProductItem(),
+              );
+            },
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 3 / 2,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+            ),
+          );
   }
 }
