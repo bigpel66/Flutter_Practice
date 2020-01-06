@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop_app/widgets/app_drawer.dart';
-import '../widgets/user_products_list.dart';
+import 'package:provider/provider.dart';
+import '../providers/products.dart';
 import '../widgets/app_drawer.dart';
+import '../widgets/user_products_list.dart';
 import '../screens/edit_product_screen.dart';
 
 class UserProductsScreen extends StatelessWidget {
@@ -9,6 +10,10 @@ class UserProductsScreen extends StatelessWidget {
 
   void showRegisterProductScreen(BuildContext context) {
     Navigator.of(context).pushNamed(EditProductScreen.routeName);
+  }
+
+  Future<void> refreshProducts(BuildContext context) async {
+    await Provider.of<Products>(context).fetchAndSetProducts();
   }
 
   @override
@@ -25,7 +30,10 @@ class UserProductsScreen extends StatelessWidget {
         ],
       ),
       drawer: AppDrawer(),
-      body: UserProductList(),
+      body: RefreshIndicator(
+        onRefresh: () => refreshProducts(context),
+        child: UserProductList(),
+      ),
     );
   }
 }
