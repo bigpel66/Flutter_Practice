@@ -61,8 +61,19 @@ class Products with ChangeNotifier {
       price: product.price,
       imageUrl: product.imageUrl,
     );
-    
+
     _items.add(newProduct);
     notifyListeners();
+  }
+
+  void updateProduct(String id, Product editedProduct) {
+    final productIndex = _items.indexWhere((item) {
+      return item.id == id;
+    });
+
+    if (productIndex >= 0) {
+      _items[productIndex] = editedProduct;
+      notifyListeners();
+    }
   }
 }
