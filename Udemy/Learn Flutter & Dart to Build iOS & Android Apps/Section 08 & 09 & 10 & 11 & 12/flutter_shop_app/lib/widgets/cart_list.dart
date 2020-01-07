@@ -86,21 +86,41 @@ class OrderButton extends StatefulWidget {
 class _OrderButtonState extends State<OrderButton> {
   bool _isLoading = false;
 
+  void _loadingWaiting(BuildContext context) async {
+    setState(() {
+      _isLoading = true;
+    });
+    await Provider.of<Orders>(context, listen: false)
+        .addOrder(widget.cartItem, widget.cart.totalPrice);
+    setState(() {
+      _isLoading = false;
+    });
+    widget.cart.clearCart();
+    if (widget.cartItem.length != 0) widget.listHandler(context);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final scaffoldOf = Scaffold.of(context);
+
     return FlatButton(
       child: _isLoading ? CircularProgressIndicator() : Text('ORDER NOW'),
       onPressed: () async {
-        setState(() {
-          _isLoading = true;
-        });
-        await Provider.of<Orders>(context, listen: false)
-            .addOrder(widget.cartItem, widget.cart.totalPrice);
-        setState(() {
-          _isLoading = false;
-        });
-        widget.cart.clearCart();
-        if (widget.cartItem.length != 0) widget.listHandler(context);
+        widget.cartItem.length == 0
+            ? scaffoldOf.showSnackBar(
+                SnackBar(
+                  content: Text(
+                    'Nothing to Order!',
+                    textAlign: TextAlign.center,
+                  ),
+                  duration: Duration(seconds: 3),
+                  action: SnackBarAction(
+                    label: 'Move to Previous Page',
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
+                ),
+              )
+            : _loadingWaiting(context);
       },
       textColor: Theme.of(context).primaryColor,
     );

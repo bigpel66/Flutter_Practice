@@ -12,10 +12,7 @@ class OrdersScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Your Order List')),
       drawer: AppDrawer(),
-      body: RefreshIndicator(
-        onRefresh: () => Provider.of<Orders>(context).fetchAndSetOrders(),
-        child: OrderList(),
-      ),
+      body: OrderList(),
     );
   }
 }
