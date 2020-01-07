@@ -30,6 +30,11 @@ class Products with ChangeNotifier {
       final response = await http.get(url);
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
       final List<Product> loadedProducts = [];
+
+      if (extractedData == null) {
+        return;
+      }
+
       extractedData.forEach((id, data) {
         loadedProducts.add(Product(
           id: id,
@@ -103,7 +108,8 @@ class Products with ChangeNotifier {
   }
 
   Future<void> removeProduct(String id) async {
-    final url = 'https://flutter-shop-app-114ec.firebaseio.com/products/$id.json';
+    final url =
+        'https://flutter-shop-app-114ec.firebaseio.com/products/$id.json';
     final existingProductIndex = _items.indexWhere((item) {
       return id == item.id;
     });

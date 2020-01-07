@@ -24,7 +24,17 @@ class _OrderListItemState extends State<OrderListItem> {
       child: Column(
         children: <Widget>[
           ListTile(
-              leading: Image.network(widget.orderItem.products[0].imageUrl),
+              leading: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  width: 60,
+                  height: 60,
+                  child: Image.network(
+                    widget.orderItem.products[0].imageUrl,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
               title: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[

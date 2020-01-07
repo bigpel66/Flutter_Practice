@@ -1,5 +1,6 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 import './cart.dart';
 
 class OrderItem {
@@ -27,16 +28,73 @@ class Orders with ChangeNotifier {
     return _orders.length;
   }
 
-  void addOrder(List<CartItem> products, double amount) {
-    _orders.insert(
-      0,
-      OrderItem(
-        id: DateTime.now().toString(),
-        amount: amount,
-        products: products,
-        dateTime: DateTime.now(),
-      ),
-    );
-    notifyListeners();
+  Future<void> fetchAndSetOrders() async {
+    const url = 'https://flutter-shop-app-114ec.firebaseio.com/orders.json';
+    try {
+      final response = await http.get(url);
+      final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      final List<OrderItem> loadedOrders = [];
+
+      if (extractedData == null) {
+        return;
+      }
+
+      extractedData.forEach((id, item) {
+        loadedOrders.add(OrderItem(
+          id: id,
+          amount: item['amount'],
+          products: (item['products'] as List<dynamic>).map((item) {
+            return CartItem(
+              id: item['id'],
+              title: item['title'],
+              quantity: item['quantity'],
+              price: item['price'],
+              imageUrl: item['imageUrl'],
+            );
+          }).toList(),
+          dateTime: DateTime.parse(item['dateTime']),
+        ));
+      });
+      _orders = loadedOrders.reversed.toList();
+      notifyListeners();
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  Future<void> addOrder(List<CartItem> products, double amount) async {
+    const url = 'https://flutter-shop-app-114ec.firebaseio.com/orders.json';
+    final timeStamp = DateTime.now();
+    try {
+      final response = await http.post(
+        url,
+        body: json.encode({
+          'amount': amount,
+          'products': products.map((item) {
+            return {
+              'id': item.id,
+              'title': item.title,
+              'quantity': item.quantity,
+              'price': item.price,
+              'imageUrl': item.imageUrl,
+            };
+          }).toList(),
+          'dateTime': timeStamp.toIso8601String(),
+        }),
+      );
+
+      _orders.insert(
+        0,
+        OrderItem(
+          id: json.decode(response.body)['name'],
+          amount: amount,
+          products: products,
+          dateTime: timeStamp,
+        ),
+      );
+      notifyListeners();
+    } catch (error) {
+      throw error;
+    }
   }
 }
