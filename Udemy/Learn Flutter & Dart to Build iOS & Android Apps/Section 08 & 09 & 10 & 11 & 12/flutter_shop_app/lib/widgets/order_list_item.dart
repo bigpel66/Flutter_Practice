@@ -31,7 +31,7 @@ class _OrderListItemState extends State<OrderListItem> {
                   Text(
                     '${widget.orderItem.products[0].title} ${widget.orderItem.products.length - 1 >= 1 ? 'with' : ''} ${widget.orderItem.products.length - 1 >= 1 ? widget.orderItem.products.length - 1 : ''} ${widget.orderItem.products.length - 1 >= 1 ? 'products' : ''}',
                   ),
-                  Text('\$${widget.orderItem.amount}')
+                  Text('\$${widget.orderItem.amount.toStringAsFixed(2)}')
                 ],
               ),
               subtitle: Text(
