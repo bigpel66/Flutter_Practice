@@ -10,6 +10,7 @@ import './screens/auth-screen.dart';
 import './providers/products.dart';
 import './providers/cart.dart';
 import './providers/orders.dart';
+import './providers/auth.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,6 +20,9 @@ class MyApp extends StatelessWidget {
   Widget _buildMaterialApp(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider.value(
+          value: Auth(),
+        ),
         ChangeNotifierProvider.value(
           value: Products(),
         ),
@@ -32,9 +36,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Practice with Udemy',
         initialRoute: '/',
-        routes: { 
+        routes: {
           '/': (context) => AuthScreen(),
-          ProductsOverviewScreen.routeName: (context) =>ProductsOverviewScreen(),
+          ProductsOverviewScreen.routeName: (context) =>
+              ProductsOverviewScreen(),
           ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
           CartScreen.routeName: (context) => CartScreen(),
           OrdersScreen.routeName: (context) => OrdersScreen(),
