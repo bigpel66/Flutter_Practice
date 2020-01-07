@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import './products_overview_screen.dart';
 import '../providers/auth.dart';
 
 enum AuthMode { Signup, Login }
@@ -112,6 +113,11 @@ class _AuthCardState extends State<AuthCard> {
     });
     if (_authMode == AuthMode.Login) {
       // Log user in
+      await Provider.of<Auth>(context, listen: false).login(
+        _authData['email'],
+        _authData['password'],
+      );
+      Navigator.of(context).pushNamed(ProductsOverviewScreen.routeName);
     } else {
       // Sign user up
       await Provider.of<Auth>(context, listen: false)
