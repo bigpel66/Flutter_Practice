@@ -33,34 +33,36 @@ class MyApp extends StatelessWidget {
           value: Orders(),
         ),
       ],
-      child: MaterialApp(
-        title: 'Practice with Udemy',
-        initialRoute: '/',
-        routes: {
-          '/': (context) => AuthScreen(),
-          ProductsOverviewScreen.routeName: (context) =>
-              ProductsOverviewScreen(),
-          ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
-          CartScreen.routeName: (context) => CartScreen(),
-          OrdersScreen.routeName: (context) => OrdersScreen(),
-          UserProductsScreen.routeName: (context) => UserProductsScreen(),
-          EditProductScreen.routeName: (context) => EditProductScreen(),
-        },
-        onGenerateRoute: (settings) {
-          return MaterialPageRoute(
-              builder: (context) => ProductsOverviewScreen());
-        },
-        onUnknownRoute: (settings) {
-          return MaterialPageRoute(
-              builder: (context) => ProductsOverviewScreen());
-        },
-        theme: ThemeData(
-          primaryColor: Colors.purple,
-          primarySwatch: Colors.purple,
-          accentColor: Colors.deepOrange,
-          fontFamily: 'Lato',
-        ),
-      ),
+      child: Consumer<Auth>(builder: (context, auth, child) {
+        return MaterialApp(
+          title: 'Practice with Udemy',
+          initialRoute: auth.isAuth ? ProductsOverviewScreen.routeName : '/',
+          routes: {
+            '/': (context) => AuthScreen(),
+            ProductsOverviewScreen.routeName: (context) =>
+                ProductsOverviewScreen(),
+            ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
+            CartScreen.routeName: (context) => CartScreen(),
+            OrdersScreen.routeName: (context) => OrdersScreen(),
+            UserProductsScreen.routeName: (context) => UserProductsScreen(),
+            EditProductScreen.routeName: (context) => EditProductScreen(),
+          },
+          onGenerateRoute: (settings) {
+            return MaterialPageRoute(
+                builder: (context) => ProductsOverviewScreen());
+          },
+          onUnknownRoute: (settings) {
+            return MaterialPageRoute(
+                builder: (context) => ProductsOverviewScreen());
+          },
+          theme: ThemeData(
+            primaryColor: Colors.purple,
+            primarySwatch: Colors.purple,
+            accentColor: Colors.deepOrange,
+            fontFamily: 'Lato',
+          ),
+        );
+      }),
     );
   }
 
