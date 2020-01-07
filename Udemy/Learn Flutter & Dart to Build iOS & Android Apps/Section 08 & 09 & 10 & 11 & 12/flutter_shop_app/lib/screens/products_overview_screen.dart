@@ -4,6 +4,7 @@ import '../widgets/products_grid.dart';
 import '../widgets/badge.dart';
 import '../widgets/app_drawer.dart';
 import '../providers/cart.dart';
+import '../providers/products.dart';
 import '../screens/cart_screen.dart';
 
 enum FilterOptions {
@@ -21,6 +22,10 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
 
   void showCartList(BuildContext context) {
     Navigator.of(context).pushNamed(CartScreen.routeName);
+  }
+
+  Future<void> refreshProducts(BuildContext context) async {
+    await Provider.of<Products>(context).fetchAndSetProducts();
   }
 
   @override
@@ -75,7 +80,10 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
         ],
       ),
       drawer: AppDrawer(),
-      body: ProductsGrid(showOnlyFavorites: _showOnlyFavorites),
+      body: RefreshIndicator(
+        onRefresh: () => refreshProducts(context),
+        child: ProductsGrid(showOnlyFavorites: _showOnlyFavorites),
+      ),
     );
   }
 }

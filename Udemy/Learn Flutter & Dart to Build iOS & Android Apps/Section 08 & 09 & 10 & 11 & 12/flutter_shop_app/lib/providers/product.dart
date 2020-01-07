@@ -1,4 +1,7 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_shop_app/models/http_exception.dart';
+import 'package:http/http.dart' as http;
 
 class Product with ChangeNotifier {
   final String id;
@@ -17,8 +20,25 @@ class Product with ChangeNotifier {
     this.isFavorited = false,
   });
 
-  void toggleFavoriteStatus() {
-    isFavorited = !isFavorited;
+  void _setFav(bool favStatus) {
+    isFavorited = favStatus;
     notifyListeners();
+  }
+
+  Future<void> toggleFavoriteStatus() async {
+    final oldStatus = isFavorited;
+
+    final url =
+        'https://flutter-shop-app-114ec.firebaseio.com/products/$id.json';
+
+    _setFav(!isFavorited);
+    final response = await http.patch(url,
+        body: json.encode({
+          'isFavorited': isFavorited,
+        }));
+    if (response.statusCode >= 400) {
+      _setFav(oldStatus);
+      throw HttpException('Could not update the item.');
+    }
   }
 }
