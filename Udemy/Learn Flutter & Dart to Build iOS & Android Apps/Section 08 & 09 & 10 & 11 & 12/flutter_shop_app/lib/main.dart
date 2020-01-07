@@ -6,6 +6,7 @@ import './screens/cart_screen.dart';
 import './screens/orders_screen.dart';
 import './screens/user_products_screen.dart';
 import './screens/edit_product_screen.dart';
+import './screens/auth-screen.dart';
 import './providers/products.dart';
 import './providers/cart.dart';
 import './providers/orders.dart';
@@ -31,8 +32,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Practice with Udemy',
         initialRoute: '/',
-        routes: {
-          '/': (context) => ProductsOverviewScreen(),
+        routes: { 
+          '/': (context) => AuthScreen(),
+          ProductsOverviewScreen.routeName: (context) =>ProductsOverviewScreen(),
           ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
           CartScreen.routeName: (context) => CartScreen(),
           OrdersScreen.routeName: (context) => OrdersScreen(),
