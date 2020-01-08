@@ -13,7 +13,8 @@ class UserProductsScreen extends StatelessWidget {
   }
 
   Future<void> refreshProducts(BuildContext context) async {
-    await Provider.of<Products>(context).fetchAndSetProducts();
+    await Provider.of<Products>(context, listen: false)
+        .fetchAndSetProducts(true);
   }
 
   @override
@@ -30,9 +31,16 @@ class UserProductsScreen extends StatelessWidget {
         ],
       ),
       drawer: AppDrawer(),
-      body: RefreshIndicator(
-        onRefresh: () => refreshProducts(context),
-        child: UserProductList(),
+      body: FutureBuilder(
+        builder: (context, snapshot) {
+          return snapshot.connectionState == ConnectionState.waiting
+              ? Center(child: CircularProgressIndicator())
+              : RefreshIndicator(
+                  onRefresh: () => refreshProducts(context),
+                  child: UserProductList(),
+                );
+        },
+        future: refreshProducts(context),
       ),
     );
   }

@@ -6,22 +6,24 @@ import '../providers/products.dart';
 class UserProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final products = Provider.of<Products>(context);
-
     return Padding(
       padding: const EdgeInsets.all(8),
-      child: ListView.builder(
-        itemCount: products.items.length,
-        itemBuilder: (context, index) {
-          return Column(
-            children: <Widget>[
-              UserProductsListItem(
-                id: products.items[index].id,
-                title: products.items[index].title,
-                imageUrl: products.items[index].imageUrl,
-              ),
-              Divider(),
-            ],
+      child: Consumer<Products>(
+        builder: (context, products, child) {
+          return ListView.builder(
+            itemCount: products.items.length,
+            itemBuilder: (context, index) {
+              return Column(
+                children: <Widget>[
+                  UserProductsListItem(
+                    id: products.items[index].id,
+                    title: products.items[index].title,
+                    imageUrl: products.items[index].imageUrl,
+                  ),
+                  Divider(),
+                ],
+              );
+            },
           );
         },
       ),

@@ -6,7 +6,8 @@ import './screens/cart_screen.dart';
 import './screens/orders_screen.dart';
 import './screens/user_products_screen.dart';
 import './screens/edit_product_screen.dart';
-import './screens/auth-screen.dart';
+import './screens/auth_screen.dart';
+import './screens/splash_screen.dart';
 import './providers/products.dart';
 import './providers/cart.dart';
 import './providers/orders.dart';
@@ -23,22 +24,46 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: Auth(),
         ),
-        ChangeNotifierProvider.value(
-          value: Products(),
+        ChangeNotifierProxyProvider<Auth, Products>(
+          // initialBuilder: (context) {
+          //   return Products(null, []);
+          // },
+          builder: (context, auth, previousProducts) {
+            return Products(
+              auth.token,
+              auth.userId,
+              previousProducts == null ? [] : previousProducts.items,
+            );
+          },
         ),
         ChangeNotifierProvider.value(
           value: Cart(),
         ),
-        ChangeNotifierProvider.value(
-          value: Orders(),
+        ChangeNotifierProxyProvider<Auth, Orders>(
+          builder: (context, auth, previousOrders) {
+            return Orders(
+              auth.token,
+              auth.userId,
+              previousOrders == null ? [] : previousOrders.orders,
+            );
+          },
         ),
       ],
       child: Consumer<Auth>(builder: (context, auth, child) {
         return MaterialApp(
           title: 'Practice with Udemy',
-          initialRoute: auth.isAuth ? ProductsOverviewScreen.routeName : '/',
+          home: auth.isAuth
+              ? ProductsOverviewScreen()
+              : FutureBuilder(
+                  future: auth.tryAutoLogin(),
+                  builder: (context, snapshot) {
+                    return snapshot.connectionState == ConnectionState.waiting
+                        ? SplashScreen()
+                        : AuthScreen();
+                  }),
           routes: {
-            '/': (context) => AuthScreen(),
+            AuthScreen.routeName: (context) => AuthScreen(),
+            SplashScreen.routeName: (context) => SplashScreen(),
             ProductsOverviewScreen.routeName: (context) =>
                 ProductsOverviewScreen(),
             ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
@@ -48,12 +73,10 @@ class MyApp extends StatelessWidget {
             EditProductScreen.routeName: (context) => EditProductScreen(),
           },
           onGenerateRoute: (settings) {
-            return MaterialPageRoute(
-                builder: (context) => ProductsOverviewScreen());
+            return MaterialPageRoute(builder: (context) => AuthScreen());
           },
           onUnknownRoute: (settings) {
-            return MaterialPageRoute(
-                builder: (context) => ProductsOverviewScreen());
+            return MaterialPageRoute(builder: (context) => AuthScreen());
           },
           theme: ThemeData(
             primaryColor: Colors.purple,

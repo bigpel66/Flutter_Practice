@@ -47,21 +47,23 @@ class _ProductsGridState extends State<ProductsGrid> {
 
     return _isLoading
         ? Center(child: CircularProgressIndicator())
-        : GridView.builder(
-            padding: const EdgeInsets.all(10.0),
-            itemCount: products.length,
-            itemBuilder: (context, index) {
-              return ChangeNotifierProvider.value(
-                value: products[index],
-                child: ProductItem(),
+        : products.length == 0
+            ? Center(child: Text('No Items'))
+            : GridView.builder(
+                padding: const EdgeInsets.all(10.0),
+                itemCount: products.length,
+                itemBuilder: (context, index) {
+                  return ChangeNotifierProvider.value(
+                    value: products[index],
+                    child: ProductItem(),
+                  );
+                },
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 3 / 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
               );
-            },
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 3 / 2,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-            ),
-          );
   }
 }

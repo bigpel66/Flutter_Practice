@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import './products_overview_screen.dart';
 import '../providers/auth.dart';
 import '../models/http_exception.dart';
 
@@ -138,15 +137,15 @@ class _AuthCardState extends State<AuthCard> {
           _authData['email'],
           _authData['password'],
         );
-        Navigator.of(context)
-            .pushReplacementNamed(ProductsOverviewScreen.routeName);
       } else {
         // Sign user up
-        await Provider.of<Auth>(context, listen: false)
-            .signup(_authData['email'], _authData['password']);
+        await Provider.of<Auth>(context, listen: false).signup(
+          _authData['email'],
+          _authData['password'],
+        );
       }
     } on HttpException catch (error) {
-      String errorMessage = 'Authentication failed.';
+      var errorMessage = 'Authentication failed.';
       if (error.toString().contains('EMAIL_EXISTS')) {
         errorMessage = 'This email address is already in use.';
       } else if (error.toString().contains('INVALID_EMAIL')) {
@@ -160,7 +159,7 @@ class _AuthCardState extends State<AuthCard> {
       }
       _showErrorDialog(errorMessage);
     } catch (error) {
-      const String errorMessage =
+      const errorMessage =
           'Could not authenticate you. Please try again later.';
       _showErrorDialog(errorMessage);
     }
