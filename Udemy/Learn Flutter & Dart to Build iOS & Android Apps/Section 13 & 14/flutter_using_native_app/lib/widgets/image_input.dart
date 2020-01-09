@@ -14,11 +14,16 @@ class ImageInput extends StatefulWidget {
 
 class _ImageInputState extends State<ImageInput> {
   File _storedImage;
-  Future<File> _takePicture() async {
+  
+  Future<void> _takePicture() async {
     final imageFile = await ImagePicker.pickImage(
       source: ImageSource.camera,
       maxWidth: 600,
     );
+
+    if (imageFile == null) {
+      return;
+    }
 
     setState(() {
       _storedImage = imageFile;
