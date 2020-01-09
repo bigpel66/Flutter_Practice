@@ -3,14 +3,11 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../models/place.dart';
 
 class MapScreen extends StatefulWidget {
-  final PlaceLocation initialLocaton;
+  final PlaceLocation initialLocation;
   final bool isSelecting;
 
   MapScreen({
-    this.initialLocaton = const PlaceLocation(
-      latitude: 37.5123854,
-      longitude: 127.0275176,
-    ),
+    this.initialLocation,
     this.isSelecting = false,
   });
 
@@ -47,8 +44,8 @@ class _MapScreen extends State<MapScreen> {
       body: GoogleMap(
         initialCameraPosition: CameraPosition(
           target: LatLng(
-            widget.initialLocaton.latitude,
-            widget.initialLocaton.longitude,
+            widget.initialLocation.latitude,
+            widget.initialLocation.longitude,
           ),
           zoom: 16,
         ),

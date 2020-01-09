@@ -3,8 +3,13 @@ import 'package:location/location.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../helpers/location_helper.dart';
 import '../screens/map_screen.dart';
+import '../models/place.dart';
 
 class LocationInput extends StatefulWidget {
+  final Function selectHandler;
+
+  LocationInput({@required this.selectHandler});
+
   @override
   State createState() => _LocationInput();
 }
@@ -12,22 +17,35 @@ class LocationInput extends StatefulWidget {
 class _LocationInput extends State<LocationInput> {
   String _previewImageUrl;
 
-  Future<void> _getCurrentUserLocation() async {
-    final locData = await Location().getLocation();
+  void _showPreview(double latitude, double longitude) {
     final staticMapImageUrl = LocationHelper.generateLocationPreviewImage(
-        latitude: locData.latitude, longitude: locData.longitude);
+        latitude: latitude, longitude: longitude);
 
     setState(() {
       _previewImageUrl = staticMapImageUrl;
     });
+
+    widget.selectHandler(latitude, longitude);
+  }
+
+  Future<void> _getCurrentUserLocation() async {
+    final locData = await Location().getLocation();
+
+    _showPreview(locData.latitude, locData.longitude);
   }
 
   Future<void> _selectOnMap() async {
+    final currentData = await Location().getLocation();
+    final placeLocationData = PlaceLocation(
+      latitude: currentData.latitude,
+      longitude: currentData.longitude,
+    );
     final selectedLocation = await Navigator.of(context).push<LatLng>(
       MaterialPageRoute(
         fullscreenDialog: true,
         builder: (ctx) {
           return MapScreen(
+            initialLocation: placeLocationData,
             isSelecting: true,
           );
         },
@@ -38,13 +56,7 @@ class _LocationInput extends State<LocationInput> {
       return;
     }
 
-    final staticMapImageUrl = LocationHelper.generateLocationPreviewImage(
-        latitude: selectedLocation.latitude,
-        longitude: selectedLocation.longitude);
-
-    setState(() {
-      _previewImageUrl = staticMapImageUrl;
-    });
+    _showPreview(selectedLocation.latitude, selectedLocation.longitude);
   }
 
   @override
