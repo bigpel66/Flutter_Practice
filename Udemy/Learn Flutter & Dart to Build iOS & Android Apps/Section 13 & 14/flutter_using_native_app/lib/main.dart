@@ -12,13 +12,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider.value(
       value: GreatPlaces(),
-          child: MaterialApp(
+      child: MaterialApp(
         title: 'Practice with Udemy',
         theme: ThemeData(
           primarySwatch: Colors.indigo,
           accentColor: Colors.amber,
         ),
         home: PlacesListScreen(),
+        routes: {
+          AddPlaceScreen.routeName: (ctx) => AddPlaceScreen(),
+        },
       ),
     );
   }
