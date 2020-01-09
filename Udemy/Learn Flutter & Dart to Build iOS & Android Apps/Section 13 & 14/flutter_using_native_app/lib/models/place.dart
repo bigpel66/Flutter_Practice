@@ -1,12 +1,12 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 
-class PlaceLocaton {
+class PlaceLocation {
   final double latitude;
   final double longitude;
   final String address;
 
-  PlaceLocaton({
+  const PlaceLocation({
     @required this.latitude,
     @required this.longitude,
     this.address,
@@ -16,7 +16,7 @@ class PlaceLocaton {
 class Place {
   final String id;
   final String title;
-  final PlaceLocaton location;
+  final PlaceLocation location;
   final File image;
 
   Place(
