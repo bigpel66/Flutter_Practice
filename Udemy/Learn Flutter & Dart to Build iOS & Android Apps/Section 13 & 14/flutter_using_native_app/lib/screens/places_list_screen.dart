@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import './add_place_screen.dart';
-import '../widgets/image_input.dart';
 
 class PlacesListScreen extends StatelessWidget {
   @override
