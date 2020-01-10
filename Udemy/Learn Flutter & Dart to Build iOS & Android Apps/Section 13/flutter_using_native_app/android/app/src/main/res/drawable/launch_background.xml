@@ -11,4 +11,8 @@
             android:gravity="center"
             android:src="@drawable/splash_icon" />
     </item>
+    <item>
+        <bitmap android:gravity="fill" android:src="@drawable/splash" />
+    </item>
+
 </layer-list>
