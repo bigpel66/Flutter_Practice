@@ -36,6 +36,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: ^0.7.2
+  flutter_launcher_name: ^0.0.1
 
 flutter_icons:
   android: true
@@ -43,6 +44,9 @@ flutter_icons:
   image_path: "dev_assets/places.png"
   adaptive_icon_background: "#191919"
   adaptive_icon_foreground: "dev_assets/places-adaptive.png"
+
+flutter_launcher_name:
+  name: "Awesome Places"
   
 
 
