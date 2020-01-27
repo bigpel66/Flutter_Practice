@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import './reusable_card.dart';
+import './icon_content.dart';
 
 const bottomContainerHeight = 80.0;
 const activeCardColor = Color(0xFF1D1E33);
@@ -24,9 +26,17 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 ReusableCard(
                   color: activeCardColor,
+                  cardChild: IconContent(
+                    iconData: FontAwesomeIcons.mars,
+                    title: 'MALE',
+                  ),
                 ),
                 ReusableCard(
                   color: activeCardColor,
+                  cardChild: IconContent(
+                    iconData: FontAwesomeIcons.venus,
+                    title: 'FEMALE',
+                  ),
                 ),
               ],
             ),
