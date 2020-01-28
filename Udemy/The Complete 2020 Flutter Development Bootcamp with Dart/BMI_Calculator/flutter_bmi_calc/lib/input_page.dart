@@ -4,6 +4,7 @@ import './reusable_card.dart';
 import './icon_content.dart';
 import './constants.dart';
 import './round_icon_button.dart';
+import './results_page.dart';
 
 enum Gender {
   male,
@@ -33,22 +34,22 @@ class _InputPageState extends State<InputPage> {
       switch (caseNumber) {
         case 1:
           setState(() {
-            weight = weight - 0.5;
+            if (weight > 0) weight = weight - 0.5;
           });
           break;
         case 2:
           setState(() {
-            weight = weight + 0.5;
+            if (weight < 200) weight = weight + 0.5;
           });
           break;
         case 3:
           setState(() {
-            age++;
+            if (age > 0) age--;
           });
           break;
         case 4:
           setState(() {
-            age--;
+            if (age < 110) age++;
           });
           break;
       }
@@ -179,7 +180,7 @@ class _InputPageState extends State<InputPage> {
                             GestureDetector(
                               onTap: () {
                                 setState(() {
-                                  weight = weight - 0.5;
+                                  if (weight > 0) weight = weight - 0.5;
                                 });
                               },
                               onLongPressStart: (_) {
@@ -196,7 +197,7 @@ class _InputPageState extends State<InputPage> {
                             GestureDetector(
                               onTap: () {
                                 setState(() {
-                                  weight = weight + 0.5;
+                                  if (weight < 200) weight = weight + 0.5;
                                 });
                               },
                               onLongPressStart: (_) {
@@ -235,7 +236,7 @@ class _InputPageState extends State<InputPage> {
                             GestureDetector(
                               onTap: () {
                                 setState(() {
-                                  age--;
+                                  if (age > 0) age--;
                                 });
                               },
                               onLongPressStart: (_) {
@@ -252,7 +253,7 @@ class _InputPageState extends State<InputPage> {
                             GestureDetector(
                               onTap: () {
                                 setState(() {
-                                  age++;
+                                  if (age < 110) age++;
                                 });
                               },
                               onLongPressStart: (_) {
@@ -274,20 +275,25 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: bottomContainerColor,
-            margin: const EdgeInsets.only(top: 10),
-            width: double.infinity,
-            height: bottomContainerHeight,
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).pushNamed(ResultsPage.routeName);
+            },
+            child: Container(
+              color: bottomContainerColor,
+              margin: const EdgeInsets.only(top: 10),
+              width: double.infinity,
+              height: bottomContainerHeight,
+              child: Center(
+                  child: Text(
+                'CALCULATE',
+                style: TextStyle(
+                  fontSize: 15.0,
+                ),
+              )),
+            ),
           ),
         ],
-      ),
-      floatingActionButton: Theme(
-        data: ThemeData(accentColor: Colors.purple),
-        child: FloatingActionButton(
-          onPressed: () {},
-          child: Icon(Icons.add),
-        ),
       ),
     );
   }
