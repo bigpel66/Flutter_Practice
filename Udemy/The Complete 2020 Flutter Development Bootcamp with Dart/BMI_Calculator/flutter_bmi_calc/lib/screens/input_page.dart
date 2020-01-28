@@ -282,8 +282,8 @@ class _InputPageState extends State<InputPage> {
               Navigator.of(context).pushNamed(
                 ResultsPage.routeName,
                 arguments: {
-                  'bmiResult': calc.getResult(),
                   'bmiMeasure': calc.calculateBMI(),
+                  'bmiResult': calc.getResult(),
                   'bmiDescription': calc.getDescription(),
                 },
               );
