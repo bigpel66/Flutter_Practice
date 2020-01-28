@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import './reusable_card.dart';
 import './icon_content.dart';
 import './constants.dart';
+import './round_icon_button.dart';
 
 enum Gender {
   male,
@@ -17,6 +18,45 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender selectedGender;
   double height = 180.0;
+  double weight = 60.0;
+  int age = 19;
+
+  bool _buttonPressed = false;
+  bool _loopActivated = false;
+
+  void _setValueWhilePrssed(int caseNumber) async {
+    if (_loopActivated) return;
+
+    _loopActivated = true;
+
+    while (_buttonPressed) {
+      switch (caseNumber) {
+        case 1:
+          setState(() {
+            weight = weight - 0.5;
+          });
+          break;
+        case 2:
+          setState(() {
+            weight = weight + 0.5;
+          });
+          break;
+        case 3:
+          setState(() {
+            age++;
+          });
+          break;
+        case 4:
+          setState(() {
+            age--;
+          });
+          break;
+      }
+
+      await Future.delayed(Duration(milliseconds: 100));
+    }
+    _loopActivated = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -122,11 +162,113 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     color: activeCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'WEIGHT',
+                          style: textStyle,
+                        ),
+                        Text(
+                          '$weight',
+                          style: numberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  weight = weight - 0.5;
+                                });
+                              },
+                              onLongPressStart: (_) {
+                                _buttonPressed = true;
+                                _setValueWhilePrssed(1);
+                              },
+                              onLongPressEnd: (_) {
+                                _buttonPressed = false;
+                              },
+                              child:
+                                  RoundIconButton(icon: FontAwesomeIcons.minus),
+                            ),
+                            const SizedBox(width: 10.0),
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  weight = weight + 0.5;
+                                });
+                              },
+                              onLongPressStart: (_) {
+                                _buttonPressed = true;
+                                _setValueWhilePrssed(2);
+                              },
+                              onLongPressEnd: (_) {
+                                _buttonPressed = false;
+                              },
+                              child:
+                                  RoundIconButton(icon: FontAwesomeIcons.plus),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
                     color: activeCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'AGE',
+                          style: textStyle,
+                        ),
+                        Text(
+                          '$age',
+                          style: numberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  age--;
+                                });
+                              },
+                              onLongPressStart: (_) {
+                                _buttonPressed = true;
+                                _setValueWhilePrssed(3);
+                              },
+                              onLongPressEnd: (_) {
+                                _buttonPressed = false;
+                              },
+                              child:
+                                  RoundIconButton(icon: FontAwesomeIcons.minus),
+                            ),
+                            const SizedBox(width: 10.0),
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                              onLongPressStart: (_) {
+                                _buttonPressed = true;
+                                _setValueWhilePrssed(4);
+                              },
+                              onLongPressEnd: (_) {
+                                _buttonPressed = false;
+                              },
+                              child:
+                                  RoundIconButton(icon: FontAwesomeIcons.plus),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],

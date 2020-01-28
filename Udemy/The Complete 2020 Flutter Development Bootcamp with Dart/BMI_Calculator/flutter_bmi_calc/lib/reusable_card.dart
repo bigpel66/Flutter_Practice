@@ -8,7 +8,7 @@ class ReusableCard extends StatelessWidget {
   ReusableCard({
     @required this.color,
     @required this.cardChild,
-    @required this.onPressHandler,
+    this.onPressHandler,
   });
 
   @override
