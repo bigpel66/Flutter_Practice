@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import './reusable_card.dart';
-import './icon_content.dart';
-import './constants.dart';
-import './round_icon_button.dart';
+import './calculator_brain.dart';
 import './results_page.dart';
-
-enum Gender {
-  male,
-  female,
-}
+import '../constants.dart';
+import '../components/reusable_card.dart';
+import '../components/icon_content.dart';
+import '../components/round_icon_button.dart';
+import '../components/bottom_button.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -275,23 +272,23 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).pushNamed(ResultsPage.routeName);
+          BottomButton(
+            onTapHandler: () {
+              CalculatorBrain calc = CalculatorBrain(
+                height: height,
+                weight: weight,
+              );
+
+              Navigator.of(context).pushNamed(
+                ResultsPage.routeName,
+                arguments: {
+                  'bmiResult': calc.getResult(),
+                  'bmiMeasure': calc.calculateBMI(),
+                  'bmiDescription': calc.getDescription(),
+                },
+              );
             },
-            child: Container(
-              color: bottomContainerColor,
-              margin: const EdgeInsets.only(top: 10),
-              width: double.infinity,
-              height: bottomContainerHeight,
-              child: Center(
-                  child: Text(
-                'CALCULATE',
-                style: TextStyle(
-                  fontSize: 15.0,
-                ),
-              )),
-            ),
+            buttonTitle: 'CALCULATE',
           ),
         ],
       ),
