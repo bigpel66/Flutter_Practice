@@ -36,19 +36,25 @@ const cryptoCurrencyURL =
 
 class CoinData {
   Future getCoinData(String selectedCurrency) async {
-    String requestURL = '$cryptoCurrencyURL/BTC$selectedCurrency';
+    Map<String, String> cryptoValues = {};
 
-    http.Response response = await http.get(requestURL);
+    for (int i = 0; i < cryptoList.length; i++) {
+      String requestURL =
+          '$cryptoCurrencyURL/${cryptoList[i]}$selectedCurrency';
+      http.Response response = await http.get(requestURL);
 
-    if (response.statusCode == 200) {
-      var decodedData = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        var decodedData = jsonDecode(response.body);
 
-      double lastPrice = decodedData['last'];
+        double lastPrice = decodedData['last'];
 
-      return lastPrice.toStringAsFixed(0);
-    } else {
-      print(response.statusCode);
-      throw 'Problem with the get request';
+        cryptoValues[cryptoList[i]] = lastPrice.toStringAsFixed(0);
+      } else {
+        print(response.statusCode);
+        throw 'Problem with the get request';
+      }
     }
+
+    return cryptoValues;
   }
 }

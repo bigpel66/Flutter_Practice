@@ -2,6 +2,7 @@ import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import './coin_data.dart';
+import './crypto_card.dart';
 
 class PriceScreen extends StatefulWidget {
   @override
@@ -10,7 +11,8 @@ class PriceScreen extends StatefulWidget {
 
 class _PriceScreenState extends State<PriceScreen> {
   String selectedCurrency = 'AUD';
-  String bitcoinValueInUSD = '?';
+  bool isWaiting = false;
+  Map<String, String> cryptoValues = {};
 
   Widget getPicker() {
     if (Platform.isIOS)
@@ -54,11 +56,13 @@ class _PriceScreenState extends State<PriceScreen> {
   }
 
   void getData() async {
+    isWaiting = true;
     try {
       var data = await CoinData().getCoinData(selectedCurrency);
+      isWaiting = false;
 
       setState(() {
-        bitcoinValueInUSD = data;
+        cryptoValues = data;
       });
     } catch (e) {
       print(e);
@@ -82,26 +86,17 @@ class _PriceScreenState extends State<PriceScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Padding(
-            padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
-            child: Card(
-              color: Colors.lightBlueAccent,
-              elevation: 5.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
-                child: Text(
-                  '1 BTC = $bitcoinValueInUSD $selectedCurrency',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              ...cryptoList.map((item) {
+                return CryptoCard(
+                  bitcoinValue: isWaiting ? '?' : cryptoValues[item],
+                  selectedCurrency: selectedCurrency,
+                  cryptoCurrency: item,
+                );
+              }),
+            ],
           ),
           Container(
             height: 150.0,
