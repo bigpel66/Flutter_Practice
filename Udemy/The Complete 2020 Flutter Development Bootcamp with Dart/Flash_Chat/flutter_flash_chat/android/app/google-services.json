@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "105547456564",
+    "firebase_url": "https://flutter-flash-b81d5.firebaseio.com",
+    "project_id": "flutter-flash-b81d5",
+    "storage_bucket": "flutter-flash-b81d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105547456564:android:324c1fa25a021e6a496a61",
+        "android_client_info": {
+          "package_name": "co.bigpel.flash_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "105547456564-th2u0miurjqt1n3dfmo0ocm9ro5g2h0n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGixILdiqkukGGgDgAYHgPe_MuqsLu4n0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "105547456564-th2u0miurjqt1n3dfmo0ocm9ro5g2h0n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

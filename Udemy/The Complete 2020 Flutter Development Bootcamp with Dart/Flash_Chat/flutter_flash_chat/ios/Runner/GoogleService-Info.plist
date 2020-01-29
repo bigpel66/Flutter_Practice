@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>105547456564-qqs72u2hajg3e4em8gm5rk3qkbr0utjo.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.105547456564-qqs72u2hajg3e4em8gm5rk3qkbr0utjo</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCk6Av4jzJ2TEFC_reXzZa0IWbeQHPu9P4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>105547456564</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>co.bigpel.flashChat</string>
+	<key>PROJECT_ID</key>
+	<string>flutter-flash-b81d5</string>
+	<key>STORAGE_BUCKET</key>
+	<string>flutter-flash-b81d5.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:105547456564:ios:dc2b8e9c1f1de44f496a61</string>
+	<key>DATABASE_URL</key>
+	<string>https://flutter-flash-b81d5.firebaseio.com</string>
+</dict>
+</plist>
