@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../models/task_data.dart';
+import '../models/task.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  final Function additionHanlder;
-
-  AddTaskScreen({@required this.additionHanlder});
-
   @override
   Widget build(BuildContext context) {
     String title;
@@ -45,7 +44,8 @@ class AddTaskScreen extends StatelessWidget {
               ),
               color: Colors.lightBlueAccent,
               onPressed: () {
-                additionHanlder(title);
+                Provider.of<TaskData>(context).addTask(title);
+                Navigator.of(context).pop();
               },
             ),
           ],
