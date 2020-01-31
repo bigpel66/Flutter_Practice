@@ -18,11 +18,17 @@ class ImageList extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(width: 1, color: Colors.grey),
       ),
-      child: Image.network(
-        image.url,
-        fit: BoxFit.cover,
-        width: double.infinity,
-        height: 350,
+      child: Column(
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(bottom: 10),
+            child: Image.network(
+              image.url,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Text(image.title),
+        ],
       ),
     );
   }
