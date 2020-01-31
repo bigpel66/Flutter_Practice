@@ -49,10 +49,10 @@ class _MyAppState extends State<MyApp> {
         body: ImageList(
           imageModels: imageModels,
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => fetchImage(),
-          child: Icon(Icons.add),
-        ),
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () => fetchImage(),
+        //   child: Icon(Icons.add),
+        // ),
       ),
     );
   }
