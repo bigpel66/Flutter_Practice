@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../blocs/bloc.dart';
 
 class LoginScreen extends StatelessWidget {
   Widget emailField() {
@@ -8,6 +9,7 @@ class LoginScreen extends StatelessWidget {
         hintText: 'you@example.com',
         labelText: 'Email Address',
       ),
+      onChanged: (newValue) {},
     );
   }
 
