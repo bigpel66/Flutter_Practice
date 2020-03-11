@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:rxdart/rxdart.dart';
 import './validators.dart';
 
 class Bloc extends Object with Validators {
@@ -12,6 +13,10 @@ class Bloc extends Object with Validators {
         validatePassword,
       );
 
+  Stream<bool> get submitValid => Rx.combineLatest2(email, password, (e, p) {
+        return true;
+      });
+
   Function(String) get changeEmail => _emailController.sink.add;
   Function(String) get changePassword => _passwordController.sink.add;
 
@@ -20,5 +25,3 @@ class Bloc extends Object with Validators {
     _passwordController.close();
   }
 }
-
-final bloc = Bloc();
