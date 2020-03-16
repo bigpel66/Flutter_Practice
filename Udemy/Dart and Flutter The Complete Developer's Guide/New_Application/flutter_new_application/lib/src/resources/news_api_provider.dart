@@ -7,20 +7,20 @@ final root = 'https://hacker-news.firebaseio.com/v0';
 class NewsApiProvider {
   Client client = Client();
 
-  Future<dynamic> fetchTopIds() async {
+  Future<List<int>> fetchTopIds() async {
     try {
       final repsonse = await client.get(
         '$root/topstories.json',
       );
       final ids = json.decode(repsonse.body);
 
-      return ids;
+      return ids.cast<int>();
     } catch (error) {
       throw error;
     }
   }
 
-  Future<dynamic> fetchItem(int id) async {
+  Future<ItemModel> fetchItem(int id) async {
     try {
       final response = await client.get(
         '$root/item/$id.json',
