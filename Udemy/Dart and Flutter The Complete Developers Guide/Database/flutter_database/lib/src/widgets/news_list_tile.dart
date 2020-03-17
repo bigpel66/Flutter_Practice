@@ -10,7 +10,28 @@ class NewsListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = StoriesProvider.of(context);
-    
-    return Container();
+
+    return Container(
+      decoration: BoxDecoration(border: Border.all(width: 1.0)),
+      child: StreamBuilder(
+        stream: bloc.itemsOutput,
+        builder: (ctx, snapshot) {
+          if (!snapshot.hasData) {
+            return Text('Stream still loading');
+          }
+
+          return FutureBuilder(
+            future: snapshot.data[itemId],
+            builder: (ctx, itemSnapshot) {
+              if (!itemSnapshot.hasData) {
+                return Text('Item still loading $itemId');
+              }
+
+              return Text(itemSnapshot.data.title);
+            },
+          );
+        },
+      ),
+    );
   }
 }
