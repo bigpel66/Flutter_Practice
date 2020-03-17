@@ -8,7 +8,7 @@ class NewsList extends StatelessWidget {
       stream: bloc.topIds,
       builder: (ctx, snapshot) {
         if (!snapshot.hasData) {
-          return Text('Still Waiting on Ids');
+          return Center(child: CircularProgressIndicator());
         }
 
         return ListView.builder(
@@ -26,7 +26,7 @@ class NewsList extends StatelessWidget {
     final bloc = StoriesProvider.of(context);
 
     bloc.fetchTopIds();
-    
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Top News'),
