@@ -8,17 +8,28 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  Route routes(RouteSettings settings) {
+    if (settings.name == '/') {
+      return MaterialPageRoute(
+        builder: (context) {
+          final bloc = StoriesProvider.of(context);
+
+          bloc.fetchTopIds();
+          return NewsList();
+        },
+      );
+    } else {
+      return MaterialPageRoute(builder: (context) {
+        final itemId = int.parse(settings.name.replaceFirst('/', ''));
+        return NewsDetail(itemId: itemId);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return StoriesProvider(
-      child: MaterialApp(
-        title: 'News!!',
-        onGenerateRoute: (RouteSettings settings) {
-          return MaterialPageRoute(builder: (context) {
-            return NewsList();
-          });
-        },
-      ),
+      child: MaterialApp(title: 'News!!', onGenerateRoute: routes),
     );
   }
 }

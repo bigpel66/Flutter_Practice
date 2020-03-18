@@ -23,8 +23,8 @@ class StoriesBloc {
   Function(int) get fetchItem => _itemsFetcher.sink.add;
 
   _itemsTransformer() {
-    return ScanStreamTransformer(
-      (Map<int, Future<ItemModel>> cache, int id, index) {
+    return ScanStreamTransformer<int, Map<int, Future<ItemModel>>>(
+      (cache, int id, index) {
         print(index);
         cache[id] = _repository.fetchItem(id);
         return cache;

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../blocs/stories_bloc.dart';
 import '../blocs/stories_provider.dart';
 import '../widgets/news_list_tile.dart';
 import '../widgets/refresh.dart';
@@ -29,8 +28,6 @@ class NewsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = StoriesProvider.of(context);
-
-    bloc.fetchTopIds();
 
     return Scaffold(
       appBar: AppBar(
