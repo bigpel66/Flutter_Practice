@@ -1,0 +1,18 @@
+{
+  "configVersion": 2,
+  "packages": [
+    {
+      "name": "prompter_sg",
+      "rootUri": "file:///Users/bigpel/.pub-cache/hosted/pub.dartlang.org/prompter_sg-0.0.2",
+      "packageUri": "lib/"
+    },
+    {
+      "name": "converter",
+      "rootUri": "../",
+      "packageUri": "lib/"
+    }
+  ],
+  "generated": "2020-03-19T23:50:15.355797Z",
+  "generator": "pub",
+  "generatorVersion": "2.8.0-dev.15.0"
+}
