@@ -9,6 +9,15 @@ class Comment extends StatelessWidget {
 
   Comment({this.itemId, this.itemMap, this.depthOfComment});
 
+  Widget buildText(ItemModel itemModel) {
+    final text = itemModel.text
+        .replaceAll('&#x27;', "'")
+        .replaceAll('<p>', '\n\n')
+        .replaceAll('</p>', '');
+
+    return Text(text);
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -26,7 +35,7 @@ class Comment extends StatelessWidget {
               left: depthOfComment * 16.0,
               right: 16.0,
             ),
-            title: Text(item.text),
+            title: buildText(item),
             subtitle: item.by == '' ? Text('Deleted') : Text(item.by),
           ),
           Divider(),
