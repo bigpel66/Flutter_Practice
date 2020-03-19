@@ -30,6 +30,7 @@ class NewsDetail extends StatelessWidget {
       return Comment(
         itemId: index,
         itemMap: itemMap,
+        depthOfComment: 1,
       );
     }).toList();
 
