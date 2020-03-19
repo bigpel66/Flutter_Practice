@@ -1,0 +1,8 @@
+name: prompter
+version: 0.0.1
+description: Library to create CLI wizard
+author: Jason Seo <bigpel66@gmail.com>
+homepage: https://www.google.com
+
+environment: 
+  sdk: '<3.0.0'
