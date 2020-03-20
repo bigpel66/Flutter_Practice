@@ -8,6 +8,15 @@ List<Option> buildFormatOptions() {
   ];
 }
 
+List<Option> buildFileOptions() {
+  Directory.current.listSync().where((entity) {
+    return FileSystemEntity.isFileSync(entity.path) &&
+        entity.path.contains(RegExp(r'\.(png|jpeg|jpg)'));
+  }).toList();
+
+  return [];
+}
+
 void main() {
   final prompter = Prompter();
 
@@ -16,5 +25,7 @@ void main() {
   if (!answer) {
     exit(0);
   }
-  prompter.askMultiple('Select format: ', buildFormatOptions());
+
+  final format = prompter.askMultiple('Select format: ', buildFormatOptions());
+  prompter.askMultiple('Select an image to convert:', buildFileOptions());
 }
