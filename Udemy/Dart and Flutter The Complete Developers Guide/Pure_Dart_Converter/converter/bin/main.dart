@@ -9,12 +9,13 @@ List<Option> buildFormatOptions() {
 }
 
 List<Option> buildFileOptions() {
-  Directory.current.listSync().where((entity) {
+  return Directory.current.listSync().where((entity) {
     return FileSystemEntity.isFileSync(entity.path) &&
         entity.path.contains(RegExp(r'\.(png|jpeg|jpg)'));
+  }).map((entity) {
+    final filename = entity.path.split(Platform.pathSeparator).last;
+    return Option(filename, entity);
   }).toList();
-
-  return [];
 }
 
 void main() {
