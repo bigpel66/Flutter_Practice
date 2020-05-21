@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './create-page.dart';
 
 class SearchPage extends StatelessWidget {
   Widget _buildGridViewItem(BuildContext context, int index) {
@@ -27,7 +28,9 @@ class SearchPage extends StatelessWidget {
     return Scaffold(
       body: _buildBody(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {},
+        onPressed: () {
+          Navigator.of(context).pushNamed(CreatePage.routeName);
+        },
         backgroundColor: Colors.blue,
         child: Icon(Icons.create),
       ),
