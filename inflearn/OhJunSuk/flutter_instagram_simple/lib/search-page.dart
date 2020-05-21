@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import './loading-page.dart';
 import './create-page.dart';
+import './detail-page.dart';
 
 class SearchPage extends StatelessWidget {
   final FirebaseUser userInfo;
@@ -10,7 +11,20 @@ class SearchPage extends StatelessWidget {
   SearchPage({this.userInfo});
 
   Widget _buildGridViewItem(BuildContext context, item) {
-    return Image.network(item['imageUrl'], fit: BoxFit.cover);
+    return Hero(
+      tag: item['imageUrl'],
+      child: Material(
+        child: InkWell(
+          child: Image.network(item['imageUrl'], fit: BoxFit.cover),
+          onTap: () {
+            Navigator.of(context).pushNamed(
+              DetailPage.routeName,
+              arguments: {'document': item},
+            );
+          },
+        ),
+      ),
+    );
   }
 
   Widget _buildBody() {
@@ -45,6 +59,7 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: _buildBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

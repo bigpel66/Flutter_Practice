@@ -9,7 +9,9 @@ class _LoadingPageState extends State<LoadingPage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: CircularProgressIndicator(),
+      child: CircularProgressIndicator(
+        backgroundColor: Colors.black,
+      ),
     );
   }
 }

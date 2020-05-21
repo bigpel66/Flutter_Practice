@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AccountPage extends StatefulWidget {
   final FirebaseUser userInfo;
@@ -13,6 +14,25 @@ class AccountPage extends StatefulWidget {
 
 class _AccountPageState extends State<AccountPage> {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
+  int _postCount = 0;
+
+  Future<QuerySnapshot> getPostSnapshot() async {
+    QuerySnapshot querySnapshot = await Firestore.instance
+        .collection('post')
+        .where('email', isEqualTo: widget.userInfo.email)
+        .getDocuments();
+
+    return querySnapshot;
+  }
+
+  @override
+  void didChangeDependencies() async {
+    super.didChangeDependencies();
+    QuerySnapshot postSnapshot = await getPostSnapshot();
+    setState(() {
+      _postCount = postSnapshot.documents.length;
+    });
+  }
 
   Widget _buildAppBar() {
     return AppBar(
@@ -84,7 +104,7 @@ class _AccountPageState extends State<AccountPage> {
             ],
           ),
           Text(
-            '0\n게시물',
+            '$_postCount\n게시물',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 16.0),
           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './root-page.dart';
 import './create-page.dart';
+import './detail-page.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       home: RootPage(),
       routes: {
         CreatePage.routeName: (context) => CreatePage(),
+        DetailPage.routeName: (context) => DetailPage(),
       },
     );
   }
