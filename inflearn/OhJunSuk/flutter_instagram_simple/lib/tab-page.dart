@@ -4,6 +4,8 @@ import './search-page.dart';
 import './account-page.dart';
 
 class TabPage extends StatefulWidget {
+  static const routeName = '/tab-page';
+
   @override
   _TabPageState createState() => _TabPageState();
 }

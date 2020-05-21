@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AccountPage extends StatelessWidget {
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+
   Widget _buildAppBar() {
     return AppBar(
       actions: <Widget>[
         IconButton(
           icon: Icon(Icons.exit_to_app),
-          onPressed: () => {},
+          onPressed: () async {
+            FirebaseAuth.instance.signOut();
+            _googleSignIn.signOut();
+          },
         ),
       ],
     );
