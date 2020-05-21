@@ -30,7 +30,7 @@ class _TabPageState extends State<TabPage> {
     super.initState();
     _pagesOnBottomNavigation = [
       HomePage(userInfo: widget.userInfo),
-      SearchPage(),
+      SearchPage(userInfo: widget.userInfo),
       AccountPage(userInfo: widget.userInfo),
     ];
   }

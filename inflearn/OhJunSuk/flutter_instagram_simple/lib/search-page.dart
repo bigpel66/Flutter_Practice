@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import './create-page.dart';
 
 class SearchPage extends StatelessWidget {
+  final FirebaseUser userInfo;
+
+  SearchPage({this.userInfo});
+
   Widget _buildGridViewItem(BuildContext context, int index) {
     return Image.network(
         'https://engineering.linecorp.com/wp-content/uploads/2019/08/flutter1.png',
@@ -29,7 +34,10 @@ class SearchPage extends StatelessWidget {
       body: _buildBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).pushNamed(CreatePage.routeName);
+          Navigator.of(context).pushNamed(
+            CreatePage.routeName,
+            arguments: {'userInfo': userInfo},
+          );
         },
         backgroundColor: Colors.blue,
         child: Icon(Icons.create),

@@ -1,5 +1,9 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 
 class CreatePage extends StatefulWidget {
@@ -19,12 +23,46 @@ class _CreatePageState extends State<CreatePage> {
     super.dispose();
   }
 
-  Widget _buildAppBar() {
+  Future<void> uploadImages(BuildContext context) async {
+    final routeArgs =
+        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+    final FirebaseUser userInfo = routeArgs['userInfo'];
+
+    _images.forEach((image) async {
+      ByteData byteData = await image.getByteData();
+      List<int> imageData = byteData.buffer.asUint8List();
+
+      StorageReference ref = FirebaseStorage.instance
+          .ref()
+          .child('post')
+          .child('${DateTime.now().millisecondsSinceEpoch}.png');
+      StorageUploadTask uploadTask =
+          ref.putData(imageData, StorageMetadata(contentType: 'image/png'));
+      StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
+      String imageUrl = taskSnapshot.ref.getDownloadURL().toString();
+
+      DocumentReference doc = Firestore.instance.collection('post').document();
+      await doc.setData({
+        'id': doc.documentID,
+        'imageUrl': imageUrl,
+        'content': textEdidtingController.text,
+        'email': userInfo.email,
+        'displayName': userInfo.displayName,
+        'userPhotoUrl': userInfo.photoUrl,
+      });
+    });
+  }
+
+  Widget _buildAppBar(BuildContext context) {
     return AppBar(
       title: Text('새 게시물'),
       actions: <Widget>[
         IconButton(
-          onPressed: () => {},
+          onPressed: () async {
+            await uploadImages(context);
+
+            Navigator.of(context).pop();
+          },
           icon: Icon(Icons.send),
         )
       ],
@@ -111,7 +149,7 @@ class _CreatePageState extends State<CreatePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
+      appBar: _buildAppBar(context),
       body: _buildBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: _loadMultiImages,
