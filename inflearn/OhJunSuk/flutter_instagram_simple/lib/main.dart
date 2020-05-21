@@ -8,6 +8,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Instagram Simple',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        primaryColor: Colors.white,
+        accentColor: Colors.black,
+      ),
       home: RootPage(),
     );
   }

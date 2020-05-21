@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './home-page.dart';
 
 class TabPage extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class _TabPageState extends State<TabPage> {
   }
 
   List _pagesOnBottomNavigation = [
-    Text('1'),
+    HomePage(),
     Text('2'),
     Text('3'),
   ];
@@ -41,6 +42,7 @@ class _TabPageState extends State<TabPage> {
           ),
         ],
         onTap: _changeBottomNavigationPage,
+        fixedColor: Colors.black,
       ),
     );
   }
