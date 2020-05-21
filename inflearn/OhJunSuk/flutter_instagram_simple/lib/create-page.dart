@@ -14,12 +14,12 @@ class CreatePage extends StatefulWidget {
 }
 
 class _CreatePageState extends State<CreatePage> {
-  final textEdidtingController = TextEditingController();
+  final textEditingController = TextEditingController();
   List<Asset> _images = List<Asset>();
 
   @override
   void dispose() {
-    textEdidtingController.dispose();
+    textEditingController.dispose();
     super.dispose();
   }
 
@@ -39,13 +39,13 @@ class _CreatePageState extends State<CreatePage> {
       StorageUploadTask uploadTask =
           ref.putData(imageData, StorageMetadata(contentType: 'image/png'));
       StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
-      String imageUrl = taskSnapshot.ref.getDownloadURL().toString();
+      String imageUrl = await taskSnapshot.ref.getDownloadURL();
 
       DocumentReference doc = Firestore.instance.collection('post').document();
       await doc.setData({
         'id': doc.documentID,
-        'imageUrl': imageUrl,
-        'content': textEdidtingController.text,
+        'imageUrl': imageUrl.toString(),
+        'content': textEditingController.text,
         'email': userInfo.email,
         'displayName': userInfo.displayName,
         'userPhotoUrl': userInfo.photoUrl,
@@ -54,6 +54,10 @@ class _CreatePageState extends State<CreatePage> {
   }
 
   Widget _buildAppBar(BuildContext context) {
+    final routeArgs =
+        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+    final FirebaseUser userInfo = routeArgs['userInfo'];
+
     return AppBar(
       title: Text('새 게시물'),
       actions: <Widget>[
@@ -102,7 +106,7 @@ class _CreatePageState extends State<CreatePage> {
             child: Center(
               child: TextField(
                 decoration: InputDecoration(hintText: '내용을 입력하세요.'),
-                controller: textEdidtingController,
+                controller: textEditingController,
               ),
             ),
           ),
