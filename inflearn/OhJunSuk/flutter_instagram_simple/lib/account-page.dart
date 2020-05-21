@@ -2,7 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class AccountPage extends StatelessWidget {
+class AccountPage extends StatefulWidget {
+  final FirebaseUser userInfo;
+
+  AccountPage({this.userInfo});
+
+  @override
+  _AccountPageState createState() => _AccountPageState();
+}
+
+class _AccountPageState extends State<AccountPage> {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   Widget _buildAppBar() {
@@ -35,9 +44,7 @@ class AccountPage extends StatelessWidget {
                     height: 80.0,
                     child: CircleAvatar(
                       backgroundColor: Colors.white,
-                      backgroundImage: NetworkImage(
-                        'https://engineering.linecorp.com/wp-content/uploads/2019/08/flutter1.png',
-                      ),
+                      backgroundImage: NetworkImage(widget.userInfo.photoUrl),
                     ),
                   ),
                   Container(
@@ -71,25 +78,25 @@ class AccountPage extends StatelessWidget {
               ),
               const SizedBox(height: 8.0),
               Text(
-                '이름',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
+                widget.userInfo.displayName,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
               )
             ],
           ),
           Text(
             '0\n게시물',
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18.0),
+            style: TextStyle(fontSize: 16.0),
           ),
           Text(
             '0\n팔로우',
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18.0),
+            style: TextStyle(fontSize: 16.0),
           ),
           Text(
             '0\n팔로잉',
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18.0),
+            style: TextStyle(fontSize: 16.0),
           ),
         ],
       ),

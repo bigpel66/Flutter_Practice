@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import './home-page.dart';
 import './search-page.dart';
 import './account-page.dart';
@@ -6,12 +7,17 @@ import './account-page.dart';
 class TabPage extends StatefulWidget {
   static const routeName = '/tab-page';
 
+  final FirebaseUser userInfo;
+
+  TabPage({this.userInfo});
+
   @override
   _TabPageState createState() => _TabPageState();
 }
 
 class _TabPageState extends State<TabPage> {
   int _selectedIndex = 0;
+  List _pagesOnBottomNavigation;
 
   void _changeBottomNavigationPage(int pageNumber) {
     setState(() {
@@ -19,11 +25,15 @@ class _TabPageState extends State<TabPage> {
     });
   }
 
-  List _pagesOnBottomNavigation = [
-    HomePage(),
-    SearchPage(),
-    AccountPage(),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _pagesOnBottomNavigation = [
+      HomePage(userInfo: widget.userInfo),
+      SearchPage(),
+      AccountPage(userInfo: widget.userInfo),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {

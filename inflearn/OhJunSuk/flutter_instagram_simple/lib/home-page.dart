@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomePage extends StatelessWidget {
+  final FirebaseUser userInfo;
+
+  HomePage({this.userInfo});
+
   Widget _buildAppBar() {
     return AppBar(
       title: Text(
@@ -45,16 +50,16 @@ class HomePage extends StatelessWidget {
                             child: CircleAvatar(
                               backgroundColor: Colors.white,
                               backgroundImage: NetworkImage(
-                                'https://engineering.linecorp.com/wp-content/uploads/2019/08/flutter1.png',
+                                userInfo.photoUrl,
                               ),
                             ),
                           ),
                           const SizedBox(height: 8.0),
                           Text(
-                            '이메일 주소',
+                            userInfo.email,
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          Text('이름'),
+                          Text(userInfo.displayName),
                           const SizedBox(height: 8.0),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
