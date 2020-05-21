@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
+  Widget _buildAppBar() {
+    return AppBar(
+      title: Text(
+        'Instagram Simple',
+        style: TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+
   Widget _buildBody() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -101,15 +113,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Instagram Simple',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+      appBar: _buildAppBar(),
       body: _buildBody(),
     );
   }
