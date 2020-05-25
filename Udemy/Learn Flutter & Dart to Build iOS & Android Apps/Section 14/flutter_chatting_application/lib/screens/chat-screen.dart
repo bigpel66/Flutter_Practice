@@ -8,6 +8,7 @@ class ChatScreen extends StatelessWidget {
       body: StreamBuilder(
           stream: Firestore.instance
               .collection('/chats/s7W9OtiZnSGMD4qNIrGJ/messages')
+              .orderBy('datetime', descending: false)
               .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -36,7 +37,14 @@ class ChatScreen extends StatelessWidget {
           }),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          Firestore.instance
+              .collection('/chats/s7W9OtiZnSGMD4qNIrGJ/messages')
+              .add({
+            'text': 'hi this is Jason',
+            'datetime': DateTime.now().toString(),
+          });
+        },
       ),
     );
   }
