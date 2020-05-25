@@ -1,17 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          return Container(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(''),
-          );
-        },
-        itemCount: 10,
+      body: StreamBuilder(
+          stream: Firestore.instance
+              .collection('/chats/s7W9OtiZnSGMD4qNIrGJ/messages')
+              .snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(
+                  backgroundColor: Colors.blue,
+                ),
+              );
+            } else {
+              if (snapshot.hasData) {
+                final documents = snapshot.data.documents;
+
+                return ListView.builder(
+                  itemCount: documents.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(documents[index]['text']),
+                    );
+                  },
+                );
+              } else {
+                return Text('Error Occured');
+              }
+            }
+          }),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {},
       ),
     );
   }
