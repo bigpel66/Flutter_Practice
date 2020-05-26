@@ -1,41 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../widgets/chat/messages.dart';
 
 class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder(
-          stream: Firestore.instance
-              .collection('/chats/s7W9OtiZnSGMD4qNIrGJ/messages')
-              .orderBy('datetime', descending: false)
-              .snapshots(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: CircularProgressIndicator(
-                  backgroundColor: Colors.blue,
+      appBar: AppBar(
+        title: Text('Flutter Chat'),
+        actions: <Widget>[
+          DropdownButton(
+            icon: Icon(
+              Icons.more_vert,
+              color: Theme.of(context).primaryIconTheme.color,
+            ),
+            items: [
+              DropdownMenuItem(
+                value: 'Signout',
+                child: Container(
+                  child: Row(
+                    children: <Widget>[
+                      Icon(Icons.exit_to_app),
+                      const SizedBox(width: 8.0),
+                      Text('Signout'),
+                    ],
+                  ),
                 ),
-              );
-            } else {
-              if (snapshot.hasData) {
-                final documents = snapshot.data.documents;
-
-                return ListView.builder(
-                  itemCount: documents.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(documents[index]['text']),
-                    );
-                  },
-                );
+              ),
+            ],
+            onChanged: (value) async {
+              if (value == 'Signout') {
+                try {
+                  await FirebaseAuth.instance.signOut();
+                  return null;
+                } catch (err) {
+                  print(err);
+                  return Text('Error Occured');
+                }
               } else {
-                return Text('Error Occured');
+                return null;
               }
-            }
-          }),
+            },
+          ),
+        ],
+      ),
+      body: Container(
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: Messages(),
+            ),
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () async {
@@ -45,7 +63,6 @@ class ChatScreen extends StatelessWidget {
             'text': 'hi this is Jason',
             'datetime': DateTime.now().toString(),
           });
-          await FirebaseAuth.instance.signOut();
         },
       ),
     );
