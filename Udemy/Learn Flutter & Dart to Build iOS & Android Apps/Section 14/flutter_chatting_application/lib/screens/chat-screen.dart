@@ -45,14 +45,22 @@ class ChatScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: Messages(),
-            ),
-            NewMessage(),
-          ],
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: Container(
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                child: Messages(),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12.0),
+                child: NewMessage(),
+              ),
+            ],
+          ),
         ),
       ),
     );
