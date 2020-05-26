@@ -8,8 +8,7 @@
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="flutter_chatting_application"
-        android:icon="@mipmap/ic_launcher"
-        android:requestLegacyExternalStorage="true">
+        android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
