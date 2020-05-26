@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 class MessageBubble extends StatelessWidget {
   final Key key;
+  final String username;
   final String message;
   final bool isMe;
 
   MessageBubble({
     this.key,
+    this.username,
     this.message,
     this.isMe,
   });
@@ -32,17 +34,46 @@ class MessageBubble extends StatelessWidget {
               ),
             ),
             width: 140.0,
-            height: 60.0,
+            height: 75.0,
             padding:
                 const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
             margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
-            child: Text(
-              message,
-              style: TextStyle(
-                color: isMe
-                    ? Colors.black
-                    : Theme.of(context).accentTextTheme.headline1.color,
-              ),
+            child: Column(
+              crossAxisAlignment:
+                  isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+              children: <Widget>[
+                // NOT GOOD WAY, FETCHING FROM API EVERY MESSAGE
+                // FutureBuilder<dynamic>(
+                //     future: Firestore.instance
+                //         .collection('users')
+                //         .document(userId)
+                //         .get(),
+                //     builder: (context, futureSnapshot) {
+                //       if (futureSnapshot.connectionState ==
+                //           ConnectionState.waiting) {
+                //         return Text('... Loading');
+                //       } else {
+                //         if (futureSnapshot.hasData) {
+                //           return Text(
+                //             futureSnapshot.data['username'],
+                //             style: TextStyle(fontWeight: FontWeight.bold),
+                //           );
+                //         } else {
+                //           return Text('Name Fetch Error');
+                //         }
+                //       }
+                //     }),
+                Text(username, style: TextStyle(fontWeight: FontWeight.bold)),
+                Text(
+                  message,
+                  style: TextStyle(
+                    color: isMe
+                        ? Colors.black
+                        : Theme.of(context).accentTextTheme.headline1.color,
+                  ),
+                  textAlign: isMe ? TextAlign.end : TextAlign.start,
+                ),
+              ],
             ),
           ),
         ],
