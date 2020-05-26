@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
 
 class AuthForm extends StatefulWidget {
+  final void Function(
+    String email,
+    String username,
+    String password,
+    bool isLogin,
+    BuildContext context,
+  ) authCallback;
+
+  AuthForm({this.authCallback});
+
   @override
   _AuthFormState createState() => _AuthFormState();
 }
@@ -12,7 +22,7 @@ class _AuthFormState extends State<AuthForm> {
   var _userName = '';
   var _userPassword = '';
 
-  void _trySubmit() {
+  void _trySubmit(BuildContext context) {
     final isValid = _formKey.currentState.validate();
 
     FocusScope.of(context).unfocus();
@@ -20,6 +30,14 @@ class _AuthFormState extends State<AuthForm> {
     if (isValid) {
       _formKey.currentState.save();
     }
+
+    widget.authCallback(
+      _userEmail.trim(),
+      _userName.trim(),
+      _userPassword.trim(),
+      _isLogin,
+      context,
+    );
   }
 
   @override
@@ -92,7 +110,7 @@ class _AuthFormState extends State<AuthForm> {
                   const SizedBox(height: 12.0),
                   RaisedButton(
                     onPressed: () {
-                      _trySubmit();
+                      _trySubmit(context);
                     },
                     child: Text(_isLogin ? 'Login' : 'Signup'),
                   ),
