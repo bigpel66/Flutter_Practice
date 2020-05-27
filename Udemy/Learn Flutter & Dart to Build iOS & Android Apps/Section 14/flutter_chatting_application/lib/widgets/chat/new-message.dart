@@ -52,6 +52,9 @@ class _NewMessageState extends State<NewMessage> {
         children: <Widget>[
           Expanded(
             child: TextField(
+              autocorrect: true,
+              textCapitalization: TextCapitalization.sentences,
+              enableSuggestions: true,
               controller: _textEditingController,
               decoration: InputDecoration(
                 labelText: 'Send a Message ...',
