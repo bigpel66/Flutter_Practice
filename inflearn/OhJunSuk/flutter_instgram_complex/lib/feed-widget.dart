@@ -21,6 +21,41 @@ class FeedWidget extends StatefulWidget {
 class _FeedWidgetState extends State<FeedWidget> {
   final _commentController = TextEditingController();
 
+  void _like() async {
+    final List<String> likedUsers =
+        List<String>.from(widget.document['likedUsers'] ?? []);
+
+    likedUsers.add('${widget.currentUser.email}');
+
+    final updatedDocument = {
+      'likedUsers': likedUsers,
+    };
+
+    await Firestore.instance
+        .collection('post')
+        .document(widget.document.documentID)
+        .updateData(updatedDocument);
+  }
+
+  void _unlike() async {
+    final List<String> likedUsers =
+        List<String>.from(widget.document['likedUsers'] ?? []);
+
+    // likedUsers.removeWhere((element) => element == widget.currentUser.email);
+    likedUsers.remove(widget.currentUser.email);
+
+    final updatedDocument = {
+      'likedUsers': likedUsers,
+    };
+
+    await Firestore.instance
+        .collection('post')
+        .document(widget.document.documentID)
+        .updateData(updatedDocument);
+  }
+
+  void _writeComment(String text) {}
+
   @override
   void dispose() {
     _commentController.dispose();
@@ -30,6 +65,7 @@ class _FeedWidgetState extends State<FeedWidget> {
   @override
   Widget build(BuildContext context) {
     var comment = widget.document['comment'] ?? 0;
+
     return Column(
       children: <Widget>[
         ListTile(
@@ -52,7 +88,17 @@ class _FeedWidgetState extends State<FeedWidget> {
           leading: Row(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Icon(Icons.favorite_border),
+              widget.document['likedUsers']
+                          ?.contains(widget.currentUser.email) ??
+                      false
+                  ? GestureDetector(
+                      onTap: _unlike,
+                      child: Icon(Icons.favorite, color: Colors.red),
+                    )
+                  : GestureDetector(
+                      onTap: _like,
+                      child: Icon(Icons.favorite_border),
+                    ),
               SizedBox(
                 width: 8.0,
               ),
@@ -71,8 +117,11 @@ class _FeedWidgetState extends State<FeedWidget> {
               width: 16.0,
             ),
             Text(
-              '좋아요 100개',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0),
+              '${widget.document['likedUsers']?.length ?? 0} Likes',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 15.0,
+              ),
             ),
           ],
         ),
@@ -148,13 +197,4 @@ class _FeedWidgetState extends State<FeedWidget> {
       ],
     );
   }
-
-  // 좋아요
-  void _like() {}
-
-  // 좋아요 취소
-  void _unlike() {}
-
-  // 댓글 작성
-  void _writeComment(String text) {}
 }

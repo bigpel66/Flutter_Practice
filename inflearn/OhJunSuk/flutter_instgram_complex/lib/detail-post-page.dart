@@ -83,8 +83,8 @@ class DetailPostPage extends StatelessWidget {
                                   if (snapshot.connectionState ==
                                       ConnectionState.waiting) {
                                     return Container(
-                                      width: 30,
-                                      height: 15,
+                                      width: 30.0,
+                                      height: 15.0,
                                       color: Colors.grey,
                                     );
                                   } else {
