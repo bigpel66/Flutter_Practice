@@ -96,7 +96,6 @@ class _CreatePageState extends State<CreatePage> {
       'photoUrl': widget.currentUser.photoUrl,
       'displayName': widget.currentUser.displayName,
       'createdAt': Timestamp.now(),
-      'lastComment': '',
     });
 
     Navigator.pop(context);

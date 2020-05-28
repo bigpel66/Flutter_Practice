@@ -54,7 +54,33 @@ class _FeedWidgetState extends State<FeedWidget> {
         .updateData(updatedDocument);
   }
 
-  void _writeComment(String text) {}
+  void _writeComment(String text) async {
+    try {
+      final data = {
+        'writer': widget.currentUser.displayName,
+        'comment': text,
+        'createdAt': Timestamp.now(),
+      };
+
+      await Firestore.instance
+          .collection('post')
+          .document(widget.document.documentID)
+          .collection('comment')
+          .add(data);
+
+      await Firestore.instance
+          .collection('post')
+          .document(widget.document.documentID)
+          .updateData(
+        {
+          'commentCount': (widget.document['commentCount'] ?? 0) + 1,
+          'lastComment': text,
+        },
+      );
+    } catch (err) {
+      throw err;
+    }
+  }
 
   @override
   void dispose() {
@@ -64,7 +90,7 @@ class _FeedWidgetState extends State<FeedWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var comment = widget.document['comment'] ?? 0;
+    var commentCount = widget.document['commentCount'] ?? 0;
 
     return Column(
       children: <Widget>[
@@ -73,7 +99,7 @@ class _FeedWidgetState extends State<FeedWidget> {
             backgroundImage: NetworkImage(widget.document['photoUrl']),
           ),
           title: Text(
-            widget.document['email'],
+            widget.document['displayName'],
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           trailing: Icon(Icons.more_vert),
@@ -134,7 +160,7 @@ class _FeedWidgetState extends State<FeedWidget> {
               width: 16.0,
             ),
             Text(
-              widget.document['email'],
+              widget.document['displayName'],
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(
@@ -146,34 +172,35 @@ class _FeedWidgetState extends State<FeedWidget> {
         SizedBox(
           height: 8.0,
         ),
-        GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => CommentPage(widget.document),
-              ),
-            );
-          },
-          child: Padding(
-            padding: const EdgeInsets.only(left: 16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Text(
-                      '댓글 $comment개 모두 보기',
-                      style: TextStyle(color: Colors.grey[500]),
-                    ),
-                  ],
+        if (commentCount > 0)
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CommentPage(widget.document),
                 ),
-                if (widget.document['lastComment'].isNotEmpty)
-                  Text(widget.document['lastComment'])
-              ],
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        'Show $commentCount Comments',
+                        style: TextStyle(color: Colors.grey[500]),
+                      ),
+                    ],
+                  ),
+                  if (widget.document['lastComment'].isNotEmpty)
+                    Text(widget.document['lastComment'])
+                ],
+              ),
             ),
           ),
-        ),
         Row(
           children: <Widget>[
             Expanded(
@@ -182,15 +209,27 @@ class _FeedWidgetState extends State<FeedWidget> {
                 child: TextField(
                   controller: _commentController,
                   onSubmitted: (text) {
-                    _writeComment(text);
-                    _commentController.text = '';
+                    if (text.isNotEmpty) {
+                      _writeComment(text);
+                      _commentController.text = '';
+                    }
                   },
                   decoration: InputDecoration(
-                    hintText: '댓글 달기',
+                    hintText: 'Submit a Comment',
                   ),
                 ),
               ),
             ),
+            IconButton(
+              icon: Icon(Icons.send),
+              onPressed: () {
+                if (_commentController.text.isNotEmpty) {
+                  FocusScope.of(context).unfocus();
+                  _writeComment(_commentController.text);
+                  _commentController.text = '';
+                }
+              },
+            )
           ],
         ),
         Divider(),

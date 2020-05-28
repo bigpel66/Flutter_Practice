@@ -16,11 +16,11 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Instagram에 오신 것을 환영합니다',
+              'Welcome to the Instagram',
               style: TextStyle(fontSize: 24.0),
             ),
             Padding(padding: EdgeInsets.all(8.0)),
-            Text('사진과 동영상을 보려면 팔로우하세요.'),
+            Text('Follow to see Pictures and Videos'),
             Padding(padding: EdgeInsets.all(16.0)),
             SizedBox(
               width: 260.0,
@@ -78,12 +78,12 @@ class HomePage extends StatelessWidget {
                         ],
                       ),
                       Padding(padding: EdgeInsets.all(4.0)),
-                      Text('Facebook 친구'),
+                      Text('Facebook Friend'),
                       Padding(padding: EdgeInsets.all(4.0)),
                       RaisedButton(
                         color: Colors.blueAccent,
                         textColor: Colors.white,
-                        child: Text('팔로우'),
+                        child: Text('Follow'),
                         onPressed: () {},
                       ),
                       Padding(padding: EdgeInsets.all(4.0))

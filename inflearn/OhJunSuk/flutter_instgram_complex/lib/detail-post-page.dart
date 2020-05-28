@@ -11,7 +11,6 @@ class DetailPostPage extends StatelessWidget {
     @required this.currentUser,
   });
 
-  // 팔로우
   Future<void> _follow(DocumentSnapshot document) async {
     await Firestore.instance
         .collection('followings')
@@ -24,7 +23,6 @@ class DetailPostPage extends StatelessWidget {
         .setData({currentUser.email: true});
   }
 
-  // 언팔로우
   Future<void> _unfollow() async {
     await Firestore.instance
         .collection('followings')
