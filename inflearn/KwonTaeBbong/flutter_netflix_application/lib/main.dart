@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './widget/bottom-bar.dart';
 import './screen/home-screen.dart';
 import './screen/search-screen.dart';
+import './screen/dib-screen.dart';
 import './screen/more-screen.dart';
 
 void main() => runApp(MyApp());
@@ -29,7 +30,7 @@ class _MyAppState extends State<MyApp> {
             children: <Widget>[
               HomeScreen(),
               SearchScreen(),
-              Container(),
+              DibScreen(),
               MoreScreen(),
             ],
           ),

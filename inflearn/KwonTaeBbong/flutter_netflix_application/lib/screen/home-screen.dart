@@ -46,17 +46,19 @@ class _HomeScreenState extends State<HomeScreen> {
         .map((document) => Movie.fromSnapshot(document))
         .toList();
 
-    return ListView(
-      children: <Widget>[
-        Stack(
-          children: <Widget>[
-            CarouselImage(movies: movies),
-            TopBar(),
-          ],
-        ),
-        CircleSlider(movies: movies),
-        BoxSlider(movies: movies),
-      ],
+    return SafeArea(
+      child: ListView(
+        children: <Widget>[
+          Stack(
+            children: <Widget>[
+              CarouselImage(movies: movies),
+              TopBar(),
+            ],
+          ),
+          CircleSlider(movies: movies),
+          BoxSlider(movies: movies),
+        ],
+      ),
     );
   }
 
