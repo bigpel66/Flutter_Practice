@@ -5,7 +5,7 @@ class BottomBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.black,
-      height: 75.0,
+      height: 60.0,
       padding: const EdgeInsets.only(bottom: 10.0),
       child: TabBar(
         labelColor: Colors.white,

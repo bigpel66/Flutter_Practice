@@ -9,6 +9,7 @@ class CircleSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //TODO: GET 3-1
     return Container(
       padding: const EdgeInsets.all(7.0),
       child: Column(
@@ -49,12 +50,13 @@ List<Widget> makeCircleImages(BuildContext context, List<Movie> list) {
                 ),
               );
             },
+            //TODO: GET 3-2
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 7.0),
               child: Align(
                 alignment: Alignment.center,
                 child: CircleAvatar(
-                  backgroundImage: AssetImage('images/${list[i].poster}'),
+                  backgroundImage: NetworkImage('${list[i].poster}'),
                   radius: 48,
                 ),
               ),

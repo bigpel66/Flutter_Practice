@@ -26,7 +26,7 @@ class _CarouselImageState extends State<CarouselImage> {
     super.initState();
     movies = widget.movies;
     images = movies.map((movie) {
-      return Image.asset('images/${movie.poster}');
+      return Image.network('${movie.poster}');
     }).toList();
     keywords = movies.map((movie) {
       return movie.keyword;
@@ -46,6 +46,7 @@ class _CarouselImageState extends State<CarouselImage> {
           Container(
             padding: const EdgeInsets.all(20.0),
           ),
+          //TODO: GET 1
           CarouselSlider(
             items: images,
             options: CarouselOptions(
@@ -74,11 +75,27 @@ class _CarouselImageState extends State<CarouselImage> {
                       likes[_currentPage]
                           ? IconButton(
                               icon: Icon(Icons.check),
-                              onPressed: () {},
+                              onPressed: () {
+                                setState(() {
+                                  likes[_currentPage] = !likes[_currentPage];
+                                  movies[_currentPage]
+                                      .documentReference
+                                      .updateData(
+                                          {'like': likes[_currentPage]});
+                                });
+                              },
                             )
                           : IconButton(
                               icon: Icon(Icons.add),
-                              onPressed: () {},
+                              onPressed: () {
+                                setState(() {
+                                  likes[_currentPage] = !likes[_currentPage];
+                                  movies[_currentPage]
+                                      .documentReference
+                                      .updateData(
+                                          {'like': likes[_currentPage]});
+                                });
+                              },
                             ),
                       Text('Dibs', style: TextStyle(fontSize: 11.0))
                     ],
@@ -139,6 +156,7 @@ class _CarouselImageState extends State<CarouselImage> {
   }
 }
 
+//TODO: GET 2
 List<Widget> makeIndicator(List list, int _currentPage) {
   List<Widget> results = [];
   for (int i = 0; i < list.length; i++) {

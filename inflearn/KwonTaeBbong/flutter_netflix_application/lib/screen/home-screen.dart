@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_netflix_application/widget/box-slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../widget/carousel-image.dart';
 import '../widget/circle-slider.dart';
 import '../widget/box-slider.dart';
@@ -11,51 +11,41 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Movie> movies = [
-    Movie.fromMap({
-      'title': '사랑의 불시착1',
-      'keyword': '사랑',
-      'poster': 'test_movie_1.png',
-      'like': false
-    }),
-    Movie.fromMap({
-      'title': '사랑의 불시착2',
-      'keyword': '로맨스',
-      'poster': 'test_movie_1.png',
-      'like': false
-    }),
-    Movie.fromMap({
-      'title': '사랑의 불시착3',
-      'keyword': '판타지',
-      'poster': 'test_movie_1.png',
-      'like': false
-    }),
-    Movie.fromMap({
-      'title': '사랑의 불시착1',
-      'keyword': '사랑',
-      'poster': 'test_movie_1.png',
-      'like': false
-    }),
-    Movie.fromMap({
-      'title': '사랑의 불시착2',
-      'keyword': '로맨스',
-      'poster': 'test_movie_1.png',
-      'like': false
-    }),
-    Movie.fromMap({
-      'title': '사랑의 불시착3',
-      'keyword': '판타지',
-      'poster': 'test_movie_1.png',
-      'like': false
-    }),
-  ];
+  final Firestore firestore = Firestore.instance;
+
+  Stream<QuerySnapshot> streamData;
+
   @override
   void initState() {
     super.initState();
+    streamData = firestore.collection('movie').snapshots();
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _fetchData(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: streamData,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: CircularProgressIndicator(backgroundColor: Colors.white),
+          );
+        } else {
+          if (snapshot.hasData) {
+            return _buildBody(context, snapshot.data.documents);
+          } else {
+            return Text('Error Occured');
+          }
+        }
+      },
+    );
+  }
+
+  Widget _buildBody(
+      BuildContext context, List<DocumentSnapshot> documentSnapshot) {
+    List<Movie> movies = documentSnapshot
+        .map((document) => Movie.fromSnapshot(document))
+        .toList();
+
     return ListView(
       children: <Widget>[
         Stack(
@@ -68,6 +58,11 @@ class _HomeScreenState extends State<HomeScreen> {
         BoxSlider(movies: movies),
       ],
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _fetchData(context);
   }
 }
 
