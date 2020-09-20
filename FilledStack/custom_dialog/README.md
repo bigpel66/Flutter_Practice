@@ -1,16 +1,37 @@
 # custom_dialog
 
-A new Flutter project.
+Testing for Making Custom Dialog without Context of Widget
 
-## Getting Started
+## Package Preparation
 
-This project is a starting point for a Flutter application.
+1. get
+Maintain Services like Dialog, SnackBar, Navigating as a singleton
 
-A few resources to get you started if this is your first Flutter project:
+2. injectable & injectable_generator
+Easily register the services above to GetIt instance with automatically generated script
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+3. build_runner
+The library that generates script of injectable things of No.2
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+4. stacked_services
+To customize dialog provided by the package (also navigating, snackbar)
+
+5. stacked
+To check the state of the result after using dialog without setState
+
+6. flutter_hooks
+To use TextEditingController widget without using StatefulWidget
+
+## How to Generate locator.config.dart
+
+1. Download the packages above
+
+2. Create locator.dart into services folder 
+(and write the code)
+
+3. Create third_party_services_module.dart into services folder
+(and write the code)
+
+4. Type "flutter pub run build_runner build --delete-conflicting-outputs"
+
+5. When locator.config.dart created, re-import the script on locator.dart
