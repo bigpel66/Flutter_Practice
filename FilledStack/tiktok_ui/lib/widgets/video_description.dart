@@ -5,7 +5,29 @@ class VideoDescription extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        child: Column(),
+        padding: const EdgeInsets.only(left: 20.0),
+        height: 70.0,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              '@firstjonny',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Text('Video title and some other stuff'),
+            Row(
+              children: <Widget>[
+                Icon(Icons.music_note, size: 15.0, color: Colors.white),
+                Text(
+                  'Artist name - Album name - song',
+                  style: TextStyle(fontSize: 12.0),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

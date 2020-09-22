@@ -1,8 +1,76 @@
 import 'package:flutter/material.dart';
+import 'package:tiktok_ui/tiktok_icons.dart';
 
 class BottomToolBar extends StatelessWidget {
+  static const double NavigationIconSize = 20.0;
+  static const double CreateButtonWidth = 38.0;
+
+  Widget get customCreateIcon => Container(
+        width: 45.0,
+        height: 27.0,
+        child: Stack(
+          children: <Widget>[
+            Container(
+              margin: const EdgeInsets.only(left: 10.0),
+              width: CreateButtonWidth,
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 250, 45, 108),
+                borderRadius: BorderRadius.circular(7.0),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(right: 10.0),
+              width: CreateButtonWidth,
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 32, 211, 234),
+                borderRadius: BorderRadius.circular(7.0),
+              ),
+            ),
+            Center(
+              child: Container(
+                width: CreateButtonWidth,
+                height: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(7.0),
+                ),
+                child: Icon(Icons.add, size: 20.0),
+              ),
+            ),
+          ],
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
-    return Row();
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 36.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Icon(
+            TikTokIcons.home,
+            color: Colors.white,
+            size: NavigationIconSize,
+          ),
+          Icon(
+            TikTokIcons.search,
+            color: Colors.white,
+            size: NavigationIconSize,
+          ),
+          customCreateIcon,
+          Icon(
+            TikTokIcons.messages,
+            color: Colors.white,
+            size: NavigationIconSize,
+          ),
+          Icon(
+            TikTokIcons.profile,
+            color: Colors.white,
+            size: NavigationIconSize,
+          ),
+        ],
+      ),
+    );
   }
 }
