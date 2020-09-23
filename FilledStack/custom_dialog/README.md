@@ -1,6 +1,7 @@
-# custom_dialog
-
-Testing for Making Custom Dialog without Context of Widget
+<h1 align="center">custom_dialog</h1>
+<div align="center">
+   Testing for Making Custom Dialog without Context of Widget
+</div>
 
 ## Package Preparation
 
@@ -37,6 +38,7 @@ Testing for Making Custom Dialog without Context of Widget
 5. When locator.config.dart created, re-import the script on locator.dart
 
 ## Demo
+
 <div style="display:flex" align="center">
     <img src="images/1.png" alt="1" width="150">
     <img src="images/2.png" alt="2" width="150">
