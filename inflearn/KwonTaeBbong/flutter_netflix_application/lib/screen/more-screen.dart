@@ -13,7 +13,7 @@ class MoreScreen extends StatelessWidget {
               padding: const EdgeInsets.only(top: 50.0),
               child: CircleAvatar(
                 radius: 100,
-                backgroundImage: AssetImage('images/bbongflix_logo.png'),
+                backgroundImage: AssetImage('assets/bbongflix_logo.png'),
               ),
             ),
             Container(

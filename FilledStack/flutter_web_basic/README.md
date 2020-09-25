@@ -1,6 +1,8 @@
-# flutter_web_basic
-
-Flutter Web Practice to Build Simple Introduction Page
+<h1 align="center">flutter_web_basic</h1>
+<div>
+    Flutter Web Practice to Build Simple Introduction Page
+    
+</div>
 
 ## How to Setup
 

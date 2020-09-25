@@ -1,6 +1,7 @@
-# tiktok_ui
-
-TikTok UI Clone
+<h1 align="center">tiktok_ui</h1>
+<div>
+    Tiktok UI Clone
+</div>
 
 ## Demo
 

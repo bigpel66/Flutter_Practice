@@ -77,7 +77,7 @@ class TopBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Image.asset(
-            'images/bbongflix_logo.png',
+            'assets/bbongflix_logo.png',
             fit: BoxFit.contain,
             height: 25.0,
           ),
