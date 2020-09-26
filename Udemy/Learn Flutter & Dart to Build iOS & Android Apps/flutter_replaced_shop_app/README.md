@@ -5,23 +5,25 @@
 
 ## Features
 
-1. Navigating animation implemented and applied to the MaterialApp Widget.
+1. This project is also a very important project to refer to State Management by Provider. Each of the model is quite related to other models. In addition, the implemented authentication methods are important too.
 
-2. MultiProvider has been used for Authentication, Cart, Order, Product. Related Providers are applied as a ChangeNotifierProxyProvider Widget.
+2. Navigating animation implemented and applied to the MaterialApp Widget.
 
-3. Authentication Provider is using Firebase to get the Token for auto login. When the user get the Token from Firebase, the Token saved on the local storage by shared preferences.
+3. MultiProvider has been used for Authentication, Cart, Order, Product. Related Providers are applied as a ChangeNotifierProxyProvider Widget.
 
-4. If user does not have a Token, the user automatically logged out.
+4. Authentication Provider is using Firebase to get the Token for auto login. When the user get the Token from Firebase, the Token is saved on the local storage by shared preferences.
 
-5. Custom Http Exception has been created to catch the Http Error precisely.
+5. If user does not have a Token, the user automatically logged out.
 
-6. The user automatically logged out when the Token expires.
+6. Custom Http Exception has been created to catch the Http Error precisely.
 
-7. The data like Cart, Order, Product are using Firebase, but not Cloud Firestore.
+7. The user automatically logged out when the Token expires.
 
-8. Filtering by favorites are applied.
+8. The data like Cart, Order, Product are using Firebase, but not Cloud Firestore.
 
-9. User interaction like snack bar, undo, fetching state ui for loading are implemented.
+9. Filtering by favorites are applied.
+
+10. User interaction like snack bar, undo, fetching state ui for loading are implemented.
 
 ## Demo
 
