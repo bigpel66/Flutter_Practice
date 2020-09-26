@@ -1,16 +1,19 @@
-# flutter_instgram_complex
+<h1 align="center">flutter_instagram_complex</h1>
+<div align="center">
+    The project to practice generating ui, linking backend service by firebase more deeply than simple version
+</div>
 
-A new Flutter project.
+## Features
 
-## Getting Started
+1. This is the complex version of Instagram clone.
 
-This project is a starting point for a Flutter application.
+2. Google Sign In can be processed by Firebase.
 
-A few resources to get you started if this is your first Flutter project:
+3. UI that is similar to the Instagram, and Login, Feed, Comment can be used.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Demo
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<div style="display:flex" align="center">
+    <img src="images/1.png" alt="1" width="300"/>
+    <img src="images/2.png" alt="2" width="300"/>
+</div>

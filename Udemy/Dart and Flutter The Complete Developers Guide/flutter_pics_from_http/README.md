@@ -1,16 +1,18 @@
-# flutter_pics_from_http
+<h1 align="center">flutter_pics_from_http</h1>
+<div align="center">
+    The project to practice Http Communication and Image Handling
+</div>
 
-A new Flutter project.
+## Features
 
-## Getting Started
+1. Image that has been fetched is handled by the ImageModel Class.
 
-This project is a starting point for a Flutter application.
+2. Images are fetched on the initState of the Main Page of the App.
 
-A few resources to get you started if this is your first Flutter project:
+3. Fetched images that have been process into the ImageModel Class are showed by the ListView.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Demo
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<div stlye="display:flex" align="center">
+    <img src="images/1.png" alt="1" width="600"/>
+</div>

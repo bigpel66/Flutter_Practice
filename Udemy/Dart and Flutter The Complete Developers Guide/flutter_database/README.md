@@ -1,16 +1,34 @@
-# flutter_database
+<h1 align="center">flutter_database</h1>
+<div align="center">
+    The project to test interacting with database by implementing API & DB Provider
+</div>
 
-A new Flutter project.
+## Features
 
-## Getting Started
+1. This project has very importatn skills which is handling the api and db by repository class.
 
-This project is a starting point for a Flutter application.
+2. Database in here means Internal Storage for the caching, not the disk database like MySQL, MongoDB.
 
-A few resources to get you started if this is your first Flutter project:
+3. API Provider and DB Provider has common feature, and that was implemented as a abstract class.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+4. Before fetching data from the other server by using API Provider, the machine cheks the internal storage by the DB Provider that has cached.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+5. Do not use API & DB Provider direcly, they are handled by the Repository Class.
+
+6. The major data which has state is Stories and Comments. They are managed by the BLoC Pattern with Inherited Widget.
+
+7. The stories on this project support Infinity Scroll with Shimmer UI when it is loading.
+
+8. State Managed data that is using BLoC is using RxDart and StreamBuilder Widget. (Stream Data is transformed in the BLoC Class internally to provide only needed data.)
+
+9. Comments of the Comment are fetched by the recursive way.
+
+10. There is a Unit Test on the test Directory.
+
+## Demo
+
+<div style="display:flex" align="center">
+    <img src="images/1.png" alt="1" width="250"/>
+    <img src="images/2.png" alt="2" width="250"/>
+    <img src="images/3.png" alt="3" width="250"/>
+</div>
