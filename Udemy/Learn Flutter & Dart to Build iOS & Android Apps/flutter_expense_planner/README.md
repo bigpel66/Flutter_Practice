@@ -1,16 +1,21 @@
-# flutter_expense_planner
+<h1 align="center">flutter_expense_planner</h1>
+<div align="center">
+    The projecto to improve responsive skill on each platform of mobile
+</div>
 
-A new Flutter project.
+## Features
 
-## Getting Started
+1. This project supports the platform distinctive UI.
 
-This project is a starting point for a Flutter application.
+2. This project supports the LandScape Mode UI.
 
-A few resources to get you started if this is your first Flutter project:
+3. LayoutBuilder and the Sizeo of MediaQueryData has been used.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Demo
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<div style="display:flex" align="center">
+    <img src="images/1.png" alt="1" width="300"/>
+    <img src="images/2.png" alt="2" width="300"/>
+    <img src="images/3.png" alt="3" width="600"/>
+    <img src="images/4.png" alt="4" width="600"/>
+</div>
