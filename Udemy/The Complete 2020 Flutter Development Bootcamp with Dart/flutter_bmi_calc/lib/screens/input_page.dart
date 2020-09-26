@@ -20,12 +20,12 @@ class _InputPageState extends State<InputPage> {
   int age = 19;
 
   bool _buttonPressed = false;
-  bool _loopActivated = false;
+  // bool _loopActivated = false;
 
   void _setValueWhilePrssed(int caseNumber) async {
-    if (_loopActivated) return;
+    // if (_loopActivated) return;
 
-    _loopActivated = true;
+    // _loopActivated = true;
 
     while (_buttonPressed) {
       switch (caseNumber) {
@@ -53,7 +53,7 @@ class _InputPageState extends State<InputPage> {
 
       await Future.delayed(Duration(milliseconds: 100));
     }
-    _loopActivated = false;
+    // _loopActivated = false;
   }
 
   @override
