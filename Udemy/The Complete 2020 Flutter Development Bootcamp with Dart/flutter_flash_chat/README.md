@@ -1,16 +1,25 @@
-# flutter_flash_chat
+<h1 align="center">flutter_flash_chat</h1>
+<div align="center">
+    The project to implement chatting application by using Firebase simply
+</div>
 
-A new Flutter project.
+## Features
 
-## Getting Started
+1. Chat contents are saved on the Cloud Firestore of Firebase.
 
-This project is a starting point for a Flutter application.
+2. Authentication is processed by Firebase Authentication.
 
-A few resources to get you started if this is your first Flutter project:
+3. Animation and AnimationController to show the UI dynamically have been used for the screen before chatting.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+4. Messages that have been chatted are fetched by the stream data from Cloud Firestore, and StreamBuilder Widget use them. They are intialized as a MessageBubble Widget and showed on the ListView.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+5. The application logo on the initial page, animated_text_kit package has been used.
+
+## Demo
+
+<div style="display:flex" align="center">
+    <img src="images/1.png" alt="1" width="300" />
+    <img src="images/2.png" alt="2" width="300" />
+    <img src="images/3.gif" alt="3" width="600" />
+    <img src="images/4.gif" alt="4" width="600" />
+</div>
