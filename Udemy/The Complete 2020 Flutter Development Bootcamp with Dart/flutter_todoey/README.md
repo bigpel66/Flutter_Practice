@@ -1,16 +1,23 @@
-# flutter_todoey
+<h1 align="center">flutter_todoey</h1>
+<div align="center">
+    The project to practice state management with Provider simply
+</div>
 
-A new Flutter project.
+## Features
 
-## Getting Started
+1. The todo task is implemented as a Task Class.
 
-This project is a starting point for a Flutter application.
+2. The data of the tasks are managed by the TaskData Class which is using ChangeNotifier Mixin. The value of the class is maintained on the root of the application with a named constructor "value" of the ChangeNotifierProvider Widget.
 
-A few resources to get you started if this is your first Flutter project:
+3. When the user add a task, the notifier notify to the Widget Tree that there's a change compared to the previous state. (Also on the deleting a task.)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+4. Each task is using the functions which is passed by a callback function.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+5. Todo tasks are maintained as a volatile data.
+
+## Demo
+
+<div stlye="display:flex" align="center">
+    <img src="images/1.png" alt="1" width="300"/>
+    <img src="images/2.png" alt="2" width="300"/>
+</div>
