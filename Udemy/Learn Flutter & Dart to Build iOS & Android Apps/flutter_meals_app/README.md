@@ -1,16 +1,27 @@
-# flutter_meals_app
+<h1 align="center">flutter_meals_app</h1>
+<div align="center">
+    The project to improve skill on Navigating the screen and Handling Data by given dummies
+</div>
 
-A new Flutter project.
+## Features
 
-## Getting Started
+1. There are 2 data classes, Category & Meal.
 
-This project is a starting point for a Flutter application.
+2. The purpose of this project is not testing Http Communication, so handling data is given dummies when the application initially built.
 
-A few resources to get you started if this is your first Flutter project:
+3. The navigating of this app is not using generating method, but using named navigating with static const route name of each page.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+4. There are also some tabs to navigate, and each tab could has drawer things. These data are maintained by the Map data structure.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+5. Filtering is available about given dummies. They are managed in the Lists which is defined on the initial page of the dummies. (Thus, the state is rollbacked when the application built on the initial state.)
+
+## Demo
+
+<div style="display:flex" align="center">
+    <img src="images/1.png" alt="1" width="250"/>
+    <img src="images/2.png" alt="2" width="250"/>
+    <img src="images/3.png" alt="3" width="250"/>
+    <img src="images/4.png" alt="4" width="250"/>
+    <img src="images/5.png" alt="5" width="250"/>
+    <img src="images/6.png" alt="6" width="250"/>
+</div>
