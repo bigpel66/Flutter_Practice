@@ -49,10 +49,10 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.purple,
             accentColor: Colors.deepOrange,
             fontFamily: 'Lato',
-            pageTransitionsTheme: PageTransitionsTheme(builders: {
-              TargetPlatform.android: CustomPageTransitionBuilder(),
-              TargetPlatform.iOS: CustomPageTransitionBuilder(),
-            }),
+            // pageTransitionsTheme: PageTransitionsTheme(builders: {
+            //   TargetPlatform.android: CustomPageTransitionBuilder(),
+            //   TargetPlatform.iOS: CustomPageTransitionBuilder(),
+            // }),
           ),
           home: auth.isAuth
               ? ProductsOverviewScreen()
