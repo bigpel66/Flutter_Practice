@@ -1,16 +1,20 @@
-# flutter_bitcoin_ticker
+<h1 align="center">flutter_bitconin_ticker</h1>
+<div align="center">
+    The project to learn the various widgets in the Flutter
+</div>
 
-A new Flutter project.
+## Features
 
-## Getting Started
+1. This application shows the BTC value to the currency of each country.
 
-This project is a starting point for a Flutter application.
+2. To get the information of the BTC to the each country, this application makes the Http Request. This process is handled by the CoinData Class.
 
-A few resources to get you started if this is your first Flutter project:
+3. Picking the country is adaptive UI which is fitted to the proper platform.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Demo
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<div style="display:flex" align="center">
+    <img src="images/1.png" alt="1" width="600"/>
+</div>
+
+-   Currently, the responding API Server is broken down. Thus, this application is not working well.
