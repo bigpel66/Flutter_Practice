@@ -13,3 +13,5 @@
 4. Prompter Class controlls the queries or the answers that user interacted.
 
 5. To test the implemented class, use main.dart in the "exmaple" directory.
+
+6. This package is uploaded on the pub.dev as the name of prompter_sg
