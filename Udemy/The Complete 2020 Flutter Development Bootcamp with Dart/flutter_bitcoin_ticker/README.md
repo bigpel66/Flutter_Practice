@@ -1,6 +1,6 @@
 <h1 align="center">flutter_bitconin_ticker</h1>
 <div align="center">
-    The project to learn the various widgets in the Flutter
+    The Project to Learn the Various Widgets in the Flutter
 </div>
 
 ## Features

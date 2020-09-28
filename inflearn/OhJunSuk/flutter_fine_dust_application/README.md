@@ -1,6 +1,6 @@
 <h1 align="center">flutter_fine_dust_application</h1>
 <div align="center">
-    The project to improve skill of Http Communication and Stream of RxDart
+    The Project to Improve Skill of Http Communication and Stream of RxDart
 </div>
 
 ## Features

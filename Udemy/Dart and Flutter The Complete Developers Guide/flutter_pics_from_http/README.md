@@ -1,6 +1,6 @@
 <h1 align="center">flutter_pics_from_http</h1>
 <div align="center">
-    The project to practice Http Communication and Image Handling
+    The Project to Practice Http Communication and Image Handling
 </div>
 
 ## Features

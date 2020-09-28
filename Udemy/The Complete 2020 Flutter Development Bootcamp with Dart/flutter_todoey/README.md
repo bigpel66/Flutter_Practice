@@ -1,6 +1,6 @@
 <h1 align="center">flutter_todoey</h1>
 <div align="center">
-    The project to practice state management with Provider simply
+    The Project to Practice State Management with Provider Simply
 </div>
 
 ## Features

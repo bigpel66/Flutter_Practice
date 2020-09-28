@@ -1,6 +1,6 @@
 <h1 align="center">flutter_cart_application</h1>
 <div align="center">
-    The project to simply test BLoC Pattern by package and Inherited Widget
+    The Project to Simply Test BLoC Pattern by Package and Inherited Widget
 </div>
 
 ## Features

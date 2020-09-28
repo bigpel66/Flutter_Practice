@@ -1,6 +1,6 @@
 <h1 align="center">flutter_using_native_app</h1>
 <div align="center">
-    The project to learn how to use native feature by flutter with Provider state management
+    The Project to Learn How to Use Native Feature by Flutter with Provider State Management
 </div>
 
 ## Features

@@ -1,6 +1,6 @@
 <h1 align="center">flutter_weather_app</h1>
 <div align="center">
-    The project to learn about the concept ot the services and navigating with Http Communication
+    The Project to Learn about the Concept ot the Services and Navigating with Http Communication
 </div>
 
 ## Features

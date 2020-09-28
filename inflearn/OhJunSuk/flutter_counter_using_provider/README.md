@@ -1,6 +1,6 @@
 <h1 align="center">flutter_counter_using_provider</h1>
 <div align="center">
-    The counter application by Provider which is using ChangeNotifier
+    The Counter Application by Provider Using ChangeNotifier
 </div>
 
 ## Demo

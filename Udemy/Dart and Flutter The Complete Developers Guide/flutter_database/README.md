@@ -1,6 +1,6 @@
 <h1 align="center">flutter_database</h1>
 <div align="center">
-    The project to test interacting with database by implementing API & DB Provider
+    The Project to Test Interacting with Database by Implementing API & DB Provider
 </div>
 
 ## Features

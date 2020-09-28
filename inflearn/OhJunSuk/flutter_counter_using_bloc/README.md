@@ -1,6 +1,6 @@
 <h1 align="center">flutter_counter_using_bloc</h1>
 <div align="center">
-    The counter application by BLoC Pattern with RxDart
+    The Counter Application by BLoC Pattern with RxDart
 </div>
 
 ## Features

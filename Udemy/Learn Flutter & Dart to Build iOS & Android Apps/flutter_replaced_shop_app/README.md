@@ -1,6 +1,6 @@
 <h1 align="center">flutter_replaced_shop_app</h1>
 <div align="center">
-    The project to improve skills on nested state management by Provider
+    The Project to Improve Skills on Nested State Management by Provider
 </div>
 
 ## Features

@@ -1,6 +1,6 @@
 <h1 align="center">flutter_instagram_complex</h1>
 <div align="center">
-    The project to practice generating ui, linking backend service by firebase more deeply than simple version
+    The Project to Practice Generating UI, Linking Backend Service by Firebase More Deeply than Simple Version
 </div>
 
 ## Features

@@ -1,6 +1,6 @@
 <h1 align="center">flutter_state_management_practice</h1>
 <div align="center">
-    The project to practice state management by Provider and BLoC Pattern
+    The Project to Practice State Management by Provider and BLoC Pattern
 </div>
 
 ## Features

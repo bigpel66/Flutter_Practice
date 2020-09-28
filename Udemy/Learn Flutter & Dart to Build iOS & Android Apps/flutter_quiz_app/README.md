@@ -1,6 +1,6 @@
 <h1 align="center">flutter_quiz_app</h1>
 <div align="center">
-    The project to start flutter app to learn
+    The Project to Start Flutter App to Learn
 </div>
 
 ## Demo

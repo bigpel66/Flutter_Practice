@@ -1,6 +1,6 @@
 <h1 align="center">flutter_bmi_calc</h1>
 <div align="center">
-    The project to learn about UI and controlling the value into the UI
+    The Project to Learn about UI and Controlling the Value into the UI
 </div>
 
 ## Features

@@ -1,6 +1,6 @@
 <h1 align="center">flutter_meals_app</h1>
 <div align="center">
-    The project to improve skill on Navigating the screen and Handling Data by given dummies
+    The Project to Improve Skill on Navigating the Screen and Handling Data by Given Dummies
 </div>
 
 ## Features

@@ -1,6 +1,6 @@
 <h1 align="center">flutter_expense_planner</h1>
 <div align="center">
-    The projecto to improve responsive skill on each platform of mobile
+    The Projecto to Improve Responsive Skill on Each Platform of Mobile
 </div>
 
 ## Features

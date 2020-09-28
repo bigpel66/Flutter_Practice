@@ -1,6 +1,6 @@
 <h1 align="center">flutter_flash_chat</h1>
 <div align="center">
-    The project to implement chatting application by using Firebase simply
+    The Project to Implement Chatting Application by Using Firebase Simply
 </div>
 
 ## Features

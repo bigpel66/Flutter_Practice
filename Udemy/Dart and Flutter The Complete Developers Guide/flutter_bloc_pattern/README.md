@@ -1,6 +1,6 @@
 <h1 align="center">flutter_bloc_pattern</h1>
 <div align="center">
-    The project to practice state management by BLoC Pattern with implementing Login Page which takes Email and Password inputs.
+    The Project to Practice State Management by BLoC Pattern with Implementing Login Page Taking Email and Password Inputs.
 </div>
 
 ## Features

@@ -1,6 +1,6 @@
 <h1 align="center">flutter_cook_book</h1>
 <div align="center">
-    The project to test the overall of Flutter
+    The Project to Test the Overall of Flutter
 </div>
 
 ## Features

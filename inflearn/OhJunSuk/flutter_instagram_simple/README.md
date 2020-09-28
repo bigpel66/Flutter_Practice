@@ -1,6 +1,6 @@
 <h1 align="center">flutter_instagram_simple</h1>
 <div align="center">
-    The project to practice generating ui, linking backend service by firebase
+    The Project to Practice Generating UI, Linking Backend Service by Firebase
 </div>
 
 ## Features

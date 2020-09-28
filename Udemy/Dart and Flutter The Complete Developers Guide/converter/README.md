@@ -1,6 +1,6 @@
 <h1 align="center">converter</h1>
 <div align="center">
-    The project to practice pure dart by implementing CLI Program
+    The Project to Practice Pure Dart by Implementing CLI Program
 </div>
 
 ## Feature

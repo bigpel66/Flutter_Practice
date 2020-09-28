@@ -1,6 +1,6 @@
 <h1 align="center">flutter_login_form</h1>
 <div align="center">
-    The project to learn about mixin and Form Widget
+    The Project to Learn about Mixin and Form Widget
 </div>
 
 ## Features

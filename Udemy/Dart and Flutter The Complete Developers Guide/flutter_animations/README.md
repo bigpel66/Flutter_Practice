@@ -1,6 +1,6 @@
 <h1 align="center">flutter_animations</h1>
 <div align="center">
-    The project to get the concept of the overall Animation of Flutter (Widgets of Animation & AnimationController)
+    The Project to Get the Concept of the Overall Animation of Flutter (Widgets of Animation & AnimationController)
 </div>
 
 ## Demo

@@ -1,6 +1,6 @@
 <h1 align="center">flutter_chatting_application</h1>
 <div align="center">
-    The project to implement chatting application by Http Communication on the Firebase
+    The Project to Implement Chatting Application by Http Communication on the Firebase
 </div>
 
 ## Features
