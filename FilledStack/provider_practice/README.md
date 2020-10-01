@@ -15,7 +15,7 @@ This application is fetching posts and comments from the API that is provided by
 
 3. This project is not dealing the different features to the Scoped Model, only showing how to use Provider.
 
-4. Views are using BaseView Class which has a Consumer with template arguments to listen the change of BaseModel Class with template arguments.
+4. Views are using BaseView Class which has a Consumer Widget with template arguments to listen the change of BaseModel Class with template arguments.
 
 5. Proivder Models are using BaseModel Class which is extending ChangeNotifier that is the implementation of Listenable to listen the notifyListeners method.
 
