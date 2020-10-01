@@ -11,9 +11,9 @@ This application is fetching posts and comments from the API that is provided by
 
 1. The data is provided from https://jsonplaceholder.typicode.com Web Site through Http Request.
 
-2. Data State that is given is implemented as similar as Scoped Model on the link https://github.com/bigpel66/flutter-practice/tree/master/FilledStack/scoped_model_practice because Provider is kind of additional version of Scoped Model.
+2. The state of data that is given is implemented as similar as Scoped Model on the link https://github.com/bigpel66/flutter-practice/tree/master/FilledStack/scoped_model_practice because Provider is kind of additional version of Scoped Model.
 
-3. This project is not dealing the different features to the Scoped Model, only showing how to use Provider.
+3. This project is not dealing with the different features to the Scoped Model, only showing how to use Provider.
 
 4. Views are using BaseView Class which has a Consumer Widget with template arguments to listen the change of BaseModel Class with template arguments.
 
