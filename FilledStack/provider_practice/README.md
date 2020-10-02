@@ -23,4 +23,5 @@ This application is fetching posts and comments from the API that is provided by
 
 <div style="display:flex" align="center">
     <img src="images/1.gif" alt="1" width="250"/>
+    <img src="images/2.gif" alt="2" width="250"/>
 </div>

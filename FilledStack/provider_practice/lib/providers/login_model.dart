@@ -24,6 +24,8 @@ class LoginModel extends BaseModel {
 
     bool loginSuccess = await _authenticationService.login(userId);
 
+    setState(ViewState.Idle);
+
     return loginSuccess;
   }
 }

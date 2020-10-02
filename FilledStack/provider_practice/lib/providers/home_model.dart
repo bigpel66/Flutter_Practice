@@ -5,14 +5,14 @@ import 'package:provider_practice/services/services.dart';
 import 'package:provider_practice/providers/providers.dart';
 
 class HomeModel extends BaseModel {
-  Api _api = locator<Api>();
+  PostService _postService = locator<PostService>();
 
-  List<Post> posts;
+  List<Post> get posts => _postService.posts;
 
   Future<void> fetchPosts(int userId) async {
     setState(ViewState.Busy);
 
-    posts = await _api.getPostsOfUser(userId);
+    await _postService.getPostsOfUser(userId);
 
     setState(ViewState.Idle);
   }

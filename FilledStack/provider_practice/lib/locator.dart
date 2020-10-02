@@ -7,11 +7,13 @@ GetIt locator = GetIt.instance;
 void setupLocator() {
   // Service as a lazy singleton
   locator.registerLazySingleton(() => AuthenticationService());
+  locator.registerLazySingleton(() => PostService());
   locator.registerLazySingleton(() => Api());
   locator.registerLazySingleton(() => Router());
 
   // states represented to a model as a factory
   locator.registerFactory(() => LoginModel());
+  locator.registerFactory(() => LikeButtonModel());
   locator.registerFactory(() => HomeModel());
   locator.registerFactory(() => CommentsModel());
 }
