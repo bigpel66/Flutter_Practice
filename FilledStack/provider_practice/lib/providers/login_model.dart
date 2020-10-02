@@ -1,11 +1,15 @@
-import 'package:provider_practice/locator.dart';
 import 'package:provider_practice/enums/enums.dart';
 import 'package:provider_practice/services/services.dart';
 import 'package:provider_practice/providers/providers.dart';
 
 class LoginModel extends BaseModel {
-  AuthenticationService _authenticationService =
-      locator<AuthenticationService>();
+  // MultiProvider
+  // AuthenticationService _authenticationService =
+  //     locator<AuthenticationService>();
+
+  final AuthenticationService authenticationService;
+
+  LoginModel({this.authenticationService});
 
   String errorMessage;
 
@@ -22,7 +26,7 @@ class LoginModel extends BaseModel {
       return false;
     }
 
-    bool loginSuccess = await _authenticationService.login(userId);
+    bool loginSuccess = await authenticationService.login(userId);
 
     setState(ViewState.Idle);
 

@@ -25,7 +25,7 @@ This application is fetching posts and comments from the API that is provided by
 
 \*\* Route Paths are integerated into a class
 
-\*\* Widgets that have repetitive features are extending BaseWidget like BaseView for some Views.
+\*\* BaseView has been changed to the BaseWidget to use ChangeNotifierProvider not only on Views, but also Widgets.
 
 ## Demo
 

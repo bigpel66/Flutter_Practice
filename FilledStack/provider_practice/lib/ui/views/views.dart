@@ -1,4 +1,4 @@
-export 'base_view.dart';
+export '../widgets/base_widget.dart';
 export 'comments_view.dart';
 export 'home_view.dart';
 export 'login_view.dart';

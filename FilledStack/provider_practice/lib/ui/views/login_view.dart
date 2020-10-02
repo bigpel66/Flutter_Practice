@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:provider_practice/enums/enums.dart';
+import 'package:provider_practice/services/authentication_service.dart';
 import 'package:provider_practice/ui/views/views.dart';
 import 'package:provider_practice/ui/shared/shared.dart';
 import 'package:provider_practice/providers/providers.dart';
@@ -10,17 +12,14 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<LoginModel>(
+    return BaseWidget<LoginModel>(
       builder: (BuildContext context, LoginModel model, Widget child) {
         return Scaffold(
           backgroundColor: backgroundColor,
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              LoginHeader(
-                controller: _controller,
-                validationMessage: model.errorMessage,
-              ),
+              child,
               model.state == ViewState.Busy
                   ? CircularProgressIndicator()
                   : FlatButton(
@@ -41,6 +40,10 @@ class LoginView extends StatelessWidget {
           ),
         );
       },
+      model: LoginModel(
+        authenticationService: Provider.of<AuthenticationService>(context),
+      ),
+      child: LoginHeader(controller: _controller),
     );
   }
 }

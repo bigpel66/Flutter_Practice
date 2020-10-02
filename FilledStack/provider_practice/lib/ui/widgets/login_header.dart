@@ -3,9 +3,8 @@ import 'package:provider_practice/ui/shared/shared.dart';
 
 class LoginHeader extends StatelessWidget {
   final TextEditingController controller;
-  final String validationMessage;
 
-  LoginHeader({@required this.controller, this.validationMessage});
+  LoginHeader({@required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +14,6 @@ class LoginHeader extends StatelessWidget {
         UIHelper.verticalSpaceMedium(),
         Text('Enter a number betwee 1 - 10', style: subHeaderStyle),
         LoginTextField(controller: controller),
-        this.validationMessage != null
-            ? Text(validationMessage, style: TextStyle(color: Colors.red))
-            : Container()
       ],
     );
   }

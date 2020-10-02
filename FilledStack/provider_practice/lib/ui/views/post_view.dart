@@ -3,12 +3,11 @@ import 'package:provider/provider.dart';
 import 'package:provider_practice/models/models.dart';
 import 'package:provider_practice/ui/views/views.dart';
 import 'package:provider_practice/ui/shared/shared.dart';
-import 'package:provider_practice/ui/widgets/widgets.dart';
 
 class PostView extends StatelessWidget {
   final Post post;
 
-  PostView({this.post});
+  const PostView({Key key, this.post}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,6 @@ class PostView extends StatelessWidget {
             ),
             UIHelper.verticalSpaceMedium(),
             Text(post.body),
-            LikeButton(postId: post.id),
             CommentsView(postId: post.id),
           ],
         ),

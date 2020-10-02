@@ -2,20 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:provider_practice/models/models.dart';
 import 'package:provider_practice/ui/views/views.dart';
 
-class Router {
-  static const InitialRoute = 'login';
+class RoutePath {
+  static const String Login = 'login';
+  static const String Home = '/';
+  static const String Post = 'post';
+}
 
+class Router {
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case '/':
+      case RoutePath.Home:
         return MaterialPageRoute(
           builder: (_) => HomeView(),
         );
-      case 'login':
+      case RoutePath.Login:
         return MaterialPageRoute(
           builder: (_) => LoginView(),
         );
-      case 'post':
+      case RoutePath.Post:
         Post post = settings.arguments as Post;
         return MaterialPageRoute(
           builder: (_) => PostView(post: post),
