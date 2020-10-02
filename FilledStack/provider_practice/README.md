@@ -19,6 +19,14 @@ This application is fetching posts and comments from the API that is provided by
 
 5. Proivder Models are using BaseModel Class which is extending ChangeNotifier that is the implementation of Listenable to listen the notifyListeners method.
 
+\*\* Project has been refactored regarding Providers & Route Path & Base Widgets.
+
+\*\* MultiProvider is including StreamProvider, ProxyProvider, Provider.
+
+\*\* Route Paths are integerated into a class
+
+\*\* Widgets that have repetitive features are extending BaseWidget like BaseView for some Views.
+
 ## Demo
 
 <div style="display:flex" align="center">
