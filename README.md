@@ -71,8 +71,20 @@ The Repository for Practicing Flutter
 
 -   FilledStack
 
+    completer_dialog
+
     custom_dialog
 
+    flare_animation
+
     flutter_web_basic
+
+    network_sensitivity
+
+    provider_practice
+
+    scoped_model_practice
+
+    sequence_animation
 
     tiktok_ui
