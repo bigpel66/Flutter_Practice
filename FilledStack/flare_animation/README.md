@@ -16,5 +16,5 @@
 ## Demo
 
 <div style="display:flex" align="center">
-    <img src="images/1.png" alt="1" width="150">
+    <img src="images/1.gif" alt="1" width="150">
 </div>
